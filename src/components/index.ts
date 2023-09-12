@@ -1,3 +1,4 @@
-import EraButtons from "./Buttons/EraButton.vue";
+import EraButton from "./Buttons/EraButton.vue";
+import { EraInput, EraFloatingLabelInput } from "./Inputs";
 
-export { EraButtons };
+export { EraButton, EraInput, EraFloatingLabelInput };
