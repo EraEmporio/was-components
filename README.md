@@ -1,4 +1,4 @@
-# milkyway
+# was-components
 Biblioteca de componentes compartilhada baseada em RadixUI e Tailwind 
 
 # install dependencies
