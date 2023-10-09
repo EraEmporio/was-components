@@ -23,9 +23,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc  --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:watch": "vue-tsc  --noEmit && vite build --watch"
   },
   "dependencies": {
+    "flowbite": "^1.8.1",
     "radix-vue": "^0.1.32",
     "tailwind-merge": "^1.14.0",
     "vee-validate": "^4.11.6",

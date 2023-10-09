@@ -1,7 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 import { inputState } from './constants';
 
-
 const validateWithSuccess = ({ normalState, errorState, successState }: inputState, valid: boolean) => {
     return valid ? twMerge(normalState, successState) : twMerge(normalState, errorState)
 }

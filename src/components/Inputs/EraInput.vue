@@ -84,8 +84,6 @@ const inputStateStyle = variations[props.variation].input;
 
 const labelStyle = computed(() => {
     const { valid, dirty } = meta;
-    console.log(props.name, props.validateSuccess)
-    console.log(errorMessage, meta.valid, meta.dirty)
     return validInputStyle(labelStateStyle, valid, dirty, props.validateSuccess);
 });
 
