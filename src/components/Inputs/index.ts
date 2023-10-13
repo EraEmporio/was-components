@@ -1,3 +1,4 @@
 import EraInput from "./EraInput.vue";
+import EraSearchInput from './EraSearchInput.vue'
 
-export { EraInput };
+export { EraInput, EraSearchInput };

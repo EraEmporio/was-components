@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, PropType } from 'vue'
 import { initFlowbite } from 'flowbite'
 
 import { twMerge } from 'tailwind-merge'
@@ -55,9 +55,8 @@ const hamburguerBtn = ref(null);
 const selectedRoute = reactive({ route: props.currentRoute })
 const emits = defineEmits(['pushRoute'])
 
-
 const closeMenu = () => {
-    if (hamburguerBtn.value) hamburguerBtn.value.click()
+    if (hamburguerBtn.value) (hamburguerBtn.value as HTMLElement).click()
 }
 
 const emitChangeRoute = (route: string) => {
