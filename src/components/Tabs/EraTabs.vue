@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { TabsList, TabsRoot, TabsTrigger } from 'radix-vue'
+import { TabsList, TabsRoot, TabsTrigger, TabsContent } from 'radix-vue'
+import { PropType } from 'vue';
+import { twMerge } from 'tailwind-merge';
 
 type EraTabs = {
     name: string,
@@ -8,28 +10,38 @@ type EraTabs = {
     componentProps: Object
 }
 
+type TabStyle = {
+    tabsRoot?: string,
+    tabsList?: string,
+    tabsTrigger?: string,
+    tabsContent?: string,
+}
+
 defineProps({
     tabs: {
         type: Array as PropType<EraTabs[]>,
     },
     defaultTab: {
         type: String
+    },
+    tabStyle: {
+        type: Object as PropType<TabStyle>,
+        default: () => <TabStyle>{ tabsContent: '', tabsList: '', tabsRoot: '', tabsTrigger: '' }
     }
 })
 </script>
 
 <template>
-    <TabsRoot class="flex flex-col w-full sm:w-[300px] shadow-[0_2px_10px] shadow-blackA4" :default-value="defaultTab">
-        <TabsList class="shrink-0 flex border-b border-mauve6" aria-label="Manage your account">
+    <TabsRoot :class="twMerge('flex flex-col w-full sm:w-[300px]', tabStyle.tabsRoot)" :default-value="defaultTab">
+        <TabsList :class="twMerge('shrink-0 flex border-b border-mauve6', tabStyle.tabsList)"
+            aria-label="Manage your account">
             <TabsTrigger v-for="tab, index in tabs" v-bind:key="index" :value="tab.refName"
-                class="bg-white px-5 h-[45px] flex-1 flex items-center justify-center text-[15px] leading-none text-mauve11 select-none first:rounded-tl-md last:rounded-tr-md hover:text-grass11 data-[state=active]:text-grass11 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:focus:relative data-[state=active]:focus:shadow-[0_0_0_2px] data-[state=active]:focus:shadow-black outline-none cursor-default"
-                value="tab1">
+                :class="twMerge('bg-white px-5 h-[45px] flex-1 flex items-center justify-center text-[15px] leading-none text-mauve11 select-none first:rounded-tl-md last:rounded-tr-md hover:text-grass11 data-[state=active]:border-blue-600 data-[state=active]:border-b-4 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:text-blue-600 data-[state=active]:font-medium outline-none cursor-default', tabStyle.tabsTrigger)">
                 {{ tab.name }}
             </TabsTrigger>
         </TabsList>
-        <TabsContent v-for="{ refName, componentProps, component }, index in tabs" v-bind:key="index"
-            class="grow p-5 bg-white rounded-b-md outline-none focus:shadow-[0_0_0_2px] focus:shadow-black" :value="refName">
-            {{ componentProps }}
+        <TabsContent v-for="{ refName, componentProps, component } in tabs"
+            :class="twMerge('grow py-3 bg-white rounded-b-md outline-none', tabStyle.tabsContent)" :value="refName">
             <component :is="component" v-bind="componentProps" />
         </TabsContent>
     </TabsRoot>

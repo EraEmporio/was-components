@@ -6,3 +6,5 @@ export { EraBottomNavigation } from "./Mobile";
 export { PageNotFound } from './Layouts'
 export { StickyNavbar } from "./Navigation";
 export { EraTabs } from './Tabs';
+export { EraAvatarFallbackInitials } from './Avatar'
+export { RatingStars } from './Miscellaneous';

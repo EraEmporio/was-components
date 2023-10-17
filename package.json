@@ -27,6 +27,7 @@
     "build:watch": "vue-tsc  --noEmit && vite build --watch"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.0.18",
     "flowbite": "^1.8.1",
     "radix-vue": "^0.1.32",
     "tailwind-merge": "^1.14.0",

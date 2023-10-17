@@ -1,7 +1,7 @@
 <template>
     <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center mx-auto p-4">
-            <div class="absolute top-0 left-0 m-3">
+            <div class="absolute top-0 left-0 m-4">
                 <button ref="hamburguerBtn" data-collapse-toggle="navbar-sticky" type="button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     aria-controls="navbar-sticky" aria-expanded="false">
@@ -15,8 +15,7 @@
             </div>
             <div class="flex md:order-2 grow justify-center">
                 <a href="/" class="flex items-center">
-                    <!-- //TODO: Substituir por um slot de imagem -->
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="App Logo">
+                    <slot></slot>
                 </a>
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineEmits } from 'vue';
 import { Icon } from '@iconify/vue'
 
 const emits = defineEmits(['openFilter'])
