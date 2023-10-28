@@ -4,8 +4,7 @@ export default {
   content: [
     "./public/index.html",
     "./index.html",
-    "./src/components/**/*.{vue,js,ts,jsx,tsx}",
-    "./node_modules/flowbite/**/*.js"
+    "./src/components/**/*.{vue,js,ts,jsx,tsx}",   
   ],
   theme: {
     extend: {},

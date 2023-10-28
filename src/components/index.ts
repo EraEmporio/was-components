@@ -8,3 +8,4 @@ export { StickyNavbar } from "./Navigation";
 export { EraTabs } from './Tabs';
 export { EraAvatarFallbackInitials } from './Avatar'
 export { RatingStars } from './Miscellaneous';
+export { EraSimpleGallery } from './PhotoGallery';

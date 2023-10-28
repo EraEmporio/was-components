@@ -10,7 +10,7 @@
                         fill="currentColor" viewBox="0 0 20 20" />
 
                     <span @click="emitChangeRoute(btnNavigation.route)"
-                        class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">{{
+                        class="text-xs text-gray-500 dark:text-gray-400 group-hover:text-blue-600 font-medium dark:group-hover:text-blue-500">{{
                             btnNavigation.label }}
                     </span>
                 </button>

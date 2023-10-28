@@ -1,6 +1,7 @@
 <template>
     <div class="flex items-center space-x-1">
-        <template v-for="index in maxRating">
+        <span v-if="showRatingValue" class="text-sm font-medium text-gray-400"> {{ rating }}</span>
+        <template v-for="index in Math.ceil(maxRating)">
             <SolidStarIcon v-if="index <= rating" class="w-4 h-4 text-yellow-300" />
             <StarIcon v-else class="w-4 h-4 text-yellow-300" />
         </template>
@@ -15,6 +16,10 @@ defineProps({
     rating: {
         type: Number,
         default: 0
+    },
+    showRatingValue: {
+        type: Boolean,
+        default: false
     }
 })
 

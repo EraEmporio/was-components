@@ -32,7 +32,7 @@ defineProps({
 </script>
 
 <template>
-    <TabsRoot :class="twMerge('flex flex-col w-full sm:w-[300px]', tabStyle.tabsRoot)" :default-value="defaultTab">
+    <TabsRoot :class="twMerge('flex flex-col w-full', tabStyle.tabsRoot)" :default-value="defaultTab">
         <TabsList :class="twMerge('shrink-0 flex border-b border-mauve6', tabStyle.tabsList)"
             aria-label="Manage your account">
             <TabsTrigger v-for="tab, index in tabs" v-bind:key="index" :value="tab.refName"
