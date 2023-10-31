@@ -36,7 +36,7 @@ defineProps({
         <TabsList :class="twMerge('shrink-0 flex border-b border-mauve6', tabStyle.tabsList)"
             aria-label="Manage your account">
             <TabsTrigger v-for="tab, index in tabs" v-bind:key="index" :value="tab.refName"
-                :class="twMerge('bg-white px-5 h-[45px] flex-1 flex items-center justify-center text-[15px] leading-none text-mauve11 select-none first:rounded-tl-md last:rounded-tr-md hover:text-grass11 data-[state=active]:border-blue-600 data-[state=active]:border-b-4 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:text-blue-600 data-[state=active]:font-medium outline-none cursor-default', tabStyle.tabsTrigger)">
+                :class="twMerge('bg-white px-5 h-[45px] flex-1 flex items-center justify-center text-sm	leading-none text-mauve11 select-none first:rounded-tl-md last:rounded-tr-md hover:text-grass11 data-[state=active]:border-blue-600 data-[state=active]:border-b-4 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:text-blue-600 data-[state=active]:font-medium outline-none cursor-default', tabStyle.tabsTrigger)">
                 {{ tab.name }}
             </TabsTrigger>
         </TabsList>

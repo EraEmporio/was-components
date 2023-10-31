@@ -1,2 +1,4 @@
 import RatingStars from './RatingStars.vue'
-export { RatingStars }
+import GiveRatingStars from './GiveRatingStars.vue'
+
+export { RatingStars, GiveRatingStars }

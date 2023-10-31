@@ -7,5 +7,6 @@ export { PageNotFound } from './Layouts'
 export { StickyNavbar } from "./Navigation";
 export { EraTabs } from './Tabs';
 export { EraAvatarFallbackInitials } from './Avatar'
-export { RatingStars } from './Miscellaneous';
+export { RatingStars, GiveRatingStars } from './Miscellaneous';
 export { EraSimpleGallery } from './PhotoGallery';
+export { EraDialog } from './Dialogs';

@@ -13,10 +13,13 @@ const disableInput = ({ normalState, disabled }: inputState) => {
     return twMerge(normalState, disabled);
 }
 
-export default (inputStateStyle: inputState, valid: boolean, dirty: boolean, validateSuccess: boolean, disabled?: boolean) => {
-    if (!dirty) return inputStateStyle.normalState;
-    if (validateSuccess) return validateWithSuccess(inputStateStyle, valid);
+export default (inputStateStyle: inputState, meta: { valid: boolean, dirty: boolean, validated: boolean }, props: { validateSuccess: boolean, disabled?: boolean }) => {
+    const { dirty, validated, valid } = meta;
+    const { validateSuccess, disabled } = props;
+    
     if (disabled) return disableInput(inputStateStyle);
+    if (!dirty && !validated) return inputStateStyle.normalState;
+    if (validateSuccess) return validateWithSuccess(inputStateStyle, valid);
 
     return validateWithoutSuccess(inputStateStyle, valid);
 }

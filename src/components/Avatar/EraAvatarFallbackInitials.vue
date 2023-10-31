@@ -5,7 +5,7 @@
         <AvatarImage :class="twMerge('h-full w-full rounded-[inherit] object-cover', avatarStyle.image)"
             :src="profile.photo" :alt="profile.name" />
         <AvatarFallback
-            :class="twMerge('text-grass11 leading-1 flex h-full w-full items-center justify-center bg-gray-200 text-[15px] font-medium text-sm', avatarStyle.fallback)"
+            :class="twMerge('text-grass11 leading-1 flex h-full w-full items-center justify-center bg-gray-200 font-medium text-xs', avatarStyle.fallback)"
             :delay-ms="300">
             {{ initials }}
         </AvatarFallback>
