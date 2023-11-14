@@ -1,3 +1,3 @@
 import StickyNavbar from './StickyNavbar.vue'
-
-export { StickyNavbar }
+import UserNavbar from './UserNavbar.vue'
+export { StickyNavbar, UserNavbar }

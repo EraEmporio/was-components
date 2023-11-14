@@ -1,5 +1,6 @@
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import { defineConfig } from 'vite'
+import { fileURLToPath, URL } from 'node:url'
 import { resolve } from "path";
 import vue from '@vitejs/plugin-vue'
 
@@ -13,6 +14,11 @@ export default defineConfig({
     }),
     cssInjectedByJsPlugin()
   ],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
   build: {
     lib: {
       // src/indext.ts is where we have exported the component(s)

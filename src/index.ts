@@ -1,4 +1,4 @@
-import './assets/main.scss'
+import './assets/styles/base.scss'
 
 import * as components from './components'
 import { App } from 'vue'

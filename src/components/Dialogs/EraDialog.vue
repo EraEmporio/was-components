@@ -10,7 +10,7 @@ import {
 
 import { Icon } from "@iconify/vue";
 import { twMerge } from "tailwind-merge";
-import { ref, PropType, defineExpose } from "vue";
+import { ref, PropType } from "vue";
 
 defineProps({
   dialogStyles: {

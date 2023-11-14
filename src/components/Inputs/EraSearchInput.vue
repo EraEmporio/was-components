@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, ref, defineEmits, watch } from "vue";
+import { PropType, ref, watch } from "vue";
 import { twMerge } from "tailwind-merge";
 
 type SearchStyle = {
