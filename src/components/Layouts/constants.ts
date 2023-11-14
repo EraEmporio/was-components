@@ -4,14 +4,19 @@ export type Config = {
         sideMenu: string,
         sideLink: string,
         login: string,
-        loginTitle: string
+        loginTitle: string,
+        miniLinksStyle: string,
     },
-    login: {
-        title: string,
-    }
+    title: string,
 }
 
 export type SideLink = {
     label: string,
     link: string
+}
+
+export type MiniLink = {
+    label: string,
+    route: string,
+    style?: string
 }

@@ -1,10 +1,12 @@
 export { EraAvatarFallbackInitials } from './Avatar'
-export { EraButton, EraFilterButton, EraRoundedButton } from "./Buttons";
+export { EraButton, EraFilterButton, EraRoundedButton, EraSubmitButton } from "./Buttons";
 export { EraSimpleCard } from "./Cards";
+export { EraCheckbox } from './Checkbox';
 export { EraDialog } from './Dialogs';
 export { DynamicForm } from "./Forms";
 export { EraInput, EraSearchInput } from "./Inputs";
 export { PageNotFound, LayoutMock, WasVertical } from './Layouts'
+export { WasMiniLink } from './Links'
 export { RatingStars, GiveRatingStars } from './Miscellaneous';
 export { EraBottomNavigation } from "./Mobile";
 export { StickyNavbar, UserNavbar } from "./Navigation";
