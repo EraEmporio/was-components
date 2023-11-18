@@ -1,7 +1,9 @@
-export { EraButton, EraFilterButton, EraRoundedButton, EraButtonIcon } from "./Buttons";
-export { EraSimpleCard } from "./Cards";
-export { EraInput, EraSearchInput, EraCheckbox } from "./Inputs";
+export { EraButton, EraFilterButton, EraRoundedButton, EraSubmitButton, EraButtonIcon } from "./Buttons";
+export { EraInput, EraSearchInput } from "./Inputs";
 export { DynamicForm } from "./Forms";
+export { EraSimpleCard } from "./Cards";
+export { EraCheckbox } from './Checkbox';
+export { WasMiniLink } from './Links'
 export { EraBottomNavigation } from "./Mobile";
 export { PageNotFound, LayoutMock, WasVertical } from './Layouts'
 export { StickyNavbar } from "./Navigation";

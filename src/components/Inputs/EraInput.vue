@@ -1,148 +1,176 @@
 <script setup lang="ts">
-import { toRef, computed } from 'vue';
-import { useField } from 'vee-validate';
+import { toRef, computed, onMounted } from "vue";
+import { initFlowbite } from "flowbite";
+import { useField } from "vee-validate";
 import {
-    FloatingInputStyle,
-    FloatingLabelStyle,
-    RegularInputStyle,
-    RegularLabelStyle,
-    inputState
-} from './constants';
-import validInputStyle from './useVariation';
-import InputErrorMessage from './InputErrorMessage.vue';
-import InputSuccessMessage from './InputSuccessMessage.vue';
+  FloatingInputStyle,
+  FloatingLabelStyle,
+  RegularInputStyle,
+  RegularLabelStyle,
+  inputState,
+} from "./constants";
+import validInputStyle from "./useVariation";
+import InputErrorMessage from "./InputErrorMessage.vue";
+import InputSuccessMessage from "./InputSuccessMessage.vue";
 
 const props = defineProps({
-    type: {
-        type: String,
-        default: 'text',
-    },
-    variation: {
-        type: String,
-        default: 'regular'
-    },
-    value: {
-        type: String,
-        default: undefined,
-    },
-    name: {
-        type: String,
-        required: true,
-    },
-    label: {
-        type: String,
-        required: true,
-    },
-    validateSuccess: {
-        type: Boolean,
-        default: false,
-    },
-    successMessage: {
-        type: String,
-        default: '',
-    },
-    placeholder: {
-        type: String,
-        default: '',
-    },
-    disabled: {
-        type: Boolean,
-        default: false
-    },
-    size: {
-        type: String,
-        default: 'normal'
-    },
-    inputType: {
-        type: String,
-        default: 'input'
-    }
+  type: {
+    type: String,
+    default: "text",
+  },
+  variation: {
+    type: String,
+    default: "regular",
+  },
+  value: {
+    type: String,
+    default: undefined,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  label: {
+    type: String,
+    required: true,
+  },
+  validateSuccess: {
+    type: Boolean,
+    default: false,
+  },
+  successMessage: {
+    type: String,
+    default: "",
+  },
+  placeholder: {
+    type: String,
+    default: "",
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  size: {
+    type: String,
+    default: "normal",
+  },
+  inputType: {
+    type: String,
+    default: "input",
+  },
 });
 
 // use `toRef` to create reactive references to `name` prop which is passed to `useField`
 // this is important because vee-validte needs to know if the field name changes
 // https://vee-validate.logaretm.com/v4/guide/composition-api/caveats
-const name = toRef(props, 'name');
+const name = toRef(props, "name");
 
 // we don't provide any rules here because we are using form-level validation
 // https://vee-validate.logaretm.com/v4/guide/validation#form-level-validation
 const {
-    value: inputValue,
-    errorMessage,
-    handleBlur,
-    handleChange,
-    meta,
+  value: inputValue,
+  errorMessage,
+  handleBlur,
+  handleChange,
+  meta,
 } = useField(name, undefined, {
-    initialValue: props.value
+  initialValue: props.value,
 });
 
 const variations = {
-    'regular': {
-        input: RegularInputStyle,
-        label: RegularLabelStyle
-    },
-    'floating': {
-        input: FloatingInputStyle,
-        label: FloatingLabelStyle
-    }
-} as { [key: string]: { input: inputState, label: inputState } }
+  regular: {
+    input: RegularInputStyle,
+    label: RegularLabelStyle,
+  },
+  floating: {
+    input: FloatingInputStyle,
+    label: FloatingLabelStyle,
+  },
+} as { [key: string]: { input: inputState; label: inputState } };
 
 const labelStateStyle = variations[props.variation].label;
 const inputStateStyle = variations[props.variation].input;
 
 const inputSize = computed(() => {
-    if (props.size == 'normal') return '';
-    if (props.size == 'large') return 'h-[62px]';
-})
+  if (props.size == "normal") return "h-[55px]";
+  if (props.size == "large") return "h-[62px]";
+});
 
 const labelInputSize = computed(() => {
-    if (props.size == 'normal') return 'text-normal';
-    if (props.size == 'large') return 'text-lg';
-})
+  if (props.size == "normal") return "text-normal";
+  if (props.size == "large") return "text-lg";
+});
 
 const labelStyle = computed(() => {
-    return validInputStyle(labelStateStyle, meta, props);
+  return validInputStyle(labelStateStyle, meta, props);
 });
 
 const inputStyle = computed(() => {
-    return validInputStyle(inputStateStyle, meta, props);
+  return validInputStyle(inputStateStyle, meta, props);
 });
 
 const showSuccessMessage = computed(() => {
-    const { disabled, validateSuccess } = props;
-    if (disabled) return false;
+  const { disabled, validateSuccess } = props;
+  if (disabled) return false;
 
-    const { valid, dirty, validated } = meta;
+  const { valid, dirty, validated } = meta;
 
-    const validAndHasInput = valid && dirty;
-    const maybeEmptyButValidated = valid && validated;
+  const validAndHasInput = valid && dirty;
+  const maybeEmptyButValidated = valid && validated;
 
-    return validateSuccess && (validAndHasInput || maybeEmptyButValidated)
-})
+  return validateSuccess && (validAndHasInput || maybeEmptyButValidated);
+});
 
 const showErrorMessage = computed(() => {
-    const { disabled } = props;
-    if (disabled) return false;
+  const { disabled } = props;
+  if (disabled) return false;
 
+  const { valid, dirty, validated } = meta;
+  return (!valid && dirty) || (!valid && validated);
+});
 
-    const { valid, dirty, validated } = meta;
-    return (!valid && dirty) || !valid && validated
-})
+onMounted(() => {
+  initFlowbite();
+});
 </script>
 
 <template>
-    <div class="relative">
-        <label :for="name" :class="[labelStyle, labelInputSize]">{{ label }}</label>
-        <input v-if="inputType == 'input'" :validate-on-input="false" :name="name" :id="name" :type="type"
-            :value="inputValue" :placeholder="placeholder" :class="[inputStyle, inputSize]" @input="handleChange"
-            @blur="handleBlur" :disabled="disabled" />
+  <div class="relative">
+    <label :for="name" :class="[labelStyle, labelInputSize]">{{ label }}</label>
+    <input
+      v-if="inputType == 'input'"
+      :validate-on-input="false"
+      :name="name"
+      :id="name"
+      :type="type"
+      :value="inputValue"
+      :placeholder="placeholder"
+      :class="[inputStyle, inputSize]"
+      @input="handleChange"
+      @blur="handleBlur"
+      :disabled="disabled"
+    />
 
-        <textarea v-else rows="10" :validate-on-input="false" :name="name" :id="name" :type="type" :value="inputValue"
-            :placeholder="placeholder" :class="[inputStyle, inputSize]" @input="handleChange" @blur="handleBlur"
-            :disabled="disabled">
-        </textarea>
+    <textarea
+      v-else
+      rows="10"
+      :validate-on-input="false"
+      :name="name"
+      :id="name"
+      :type="type"
+      :value="inputValue"
+      :placeholder="placeholder"
+      :class="[inputStyle, inputSize]"
+      @input="handleChange"
+      @blur="handleBlur"
+      :disabled="disabled"
+    >
+    </textarea>
 
-        <input-success-message :enable="showSuccessMessage" :message="successMessage" />
-        <input-error-message :enable="showErrorMessage" :message="errorMessage" />
-    </div>
+    <input-success-message
+      :enable="showSuccessMessage"
+      :message="successMessage"
+    />
+    <input-error-message :enable="showErrorMessage" :message="errorMessage" />
+  </div>
 </template>
