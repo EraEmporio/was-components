@@ -3,6 +3,7 @@ export { EraInput, EraSearchInput } from "./Inputs";
 export { DynamicForm } from "./Forms";
 export { EraSimpleCard } from "./Cards";
 export { EraCheckbox } from './Checkbox';
+export { EraSelect } from './Select';
 export { WasMiniLink } from './Links'
 export { EraBottomNavigation } from "./Mobile";
 export { PageNotFound, LayoutMock, WasVertical } from './Layouts'

@@ -8,10 +8,10 @@ import {
   RegularInputStyle,
   RegularLabelStyle,
   inputState,
-} from "./constants";
-import validInputStyle from "./useVariation";
-import InputErrorMessage from "./InputErrorMessage.vue";
-import InputSuccessMessage from "./InputSuccessMessage.vue";
+} from "../Inputs/constants";
+import validInputStyle from "../Inputs/useVariation";
+import InputErrorMessage from "../Inputs/InputErrorMessage.vue";
+import InputSuccessMessage from "../Inputs/InputSuccessMessage.vue";
 
 const props = defineProps({
   type: {
@@ -58,6 +58,14 @@ const props = defineProps({
     type: String,
     default: "input",
   },
+  options: {
+    type: Array,
+    default: () => [],
+  },
+  config: {
+    type: Object,
+    default: () => {},
+  },
 });
 
 // use `toRef` to create reactive references to `name` prop which is passed to `useField`
@@ -91,8 +99,20 @@ const variations = {
 const labelStateStyle = variations[props.variation].label;
 const inputStateStyle = variations[props.variation].input;
 
+const labelKey = computed(() => {
+  const { config } = props;
+  if (!config) return "label";
+  return Object.keys(config).includes("labelKey") ? config.labelKey : "label";
+});
+
+const valueKey = computed(() => {
+  const { config } = props;
+  if (!config) return "value";
+  return Object.keys(config).includes("valueKey") ? config.valueKey : "value";
+});
+
 const inputSize = computed(() => {
-  if (props.size == "small") return "h-[42px]";
+  if (props.size == "small") return "h-[43px]";
   if (props.size == "normal") return "h-[55px]";
   if (props.size == "large") return "h-[62px]";
 });
@@ -139,35 +159,28 @@ onMounted(() => {
 <template>
   <div class="relative">
     <label :for="name" :class="[labelStyle, labelInputSize]">{{ label }}</label>
-    <input
-      v-if="inputType == 'input'"
-      :validate-on-input="false"
+    <select
       :name="name"
       :id="name"
-      :type="type"
-      :value="inputValue"
       :placeholder="placeholder"
-      :class="[inputStyle, inputSize]"
+      :disabled="disabled"
       @input="handleChange"
       @blur="handleBlur"
-      :disabled="disabled"
-    />
-
-    <textarea
-      v-else
-      rows="10"
-      :validate-on-input="false"
-      :name="name"
-      :id="name"
-      :type="type"
-      :value="inputValue"
-      :placeholder="placeholder"
       :class="[inputStyle, inputSize]"
-      @input="handleChange"
-      @blur="handleBlur"
-      :disabled="disabled"
     >
-    </textarea>
+      {{
+        value
+      }}
+      <option :value="value" disabled>Select a drink</option>
+      <option
+        v-for="option in options"
+        :key="option"
+        :value="option[valueKey]"
+        :selected="value && value.includes(option)"
+      >
+        {{ option[labelKey] || "" }}
+      </option>
+    </select>
 
     <input-success-message
       :enable="showSuccessMessage"
