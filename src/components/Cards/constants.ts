@@ -10,6 +10,17 @@ export type NoticeCard = {
     text: string
 }
 
+export type AutarchyCard = {
+    image: string
+    imageConfig: string
+    label: string
+}
+
+export type AutarchyCardStyle = {
+    card: string
+    label: string
+}
+
 type cardVariation = {
     cardStyle: string
     circleStyle: string

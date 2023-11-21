@@ -2,13 +2,13 @@
   <div
     :class="
       twMerge(
-        'dp-tag inline-flex h-fit py-1.5 px-4 rounded-full items-center justify-center gap-2.5',
+        'dp-tag inline-flex h-fit py-1 px-3.5 rounded-full items-center justify-center gap-2.5',
         tagColor
       )
     "
   >
-    <img src="@/assets/images/logos/mono_neg_avatar.svg" class="w-4 h-auto" />
-    <span class="dp-tag-label uppercase text-white text-xs tracking-wide">
+    <img src="@/assets/images/logos/mono_neg_avatar.svg" class="w-3.5 h-auto" />
+    <span class="dp-tag-label uppercase flex-wrap text-white text-xs tracking-wide">
       {{ tagLabel }}</span
     >
   </div>

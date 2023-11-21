@@ -155,16 +155,6 @@ const showErrorMessage = computed(() => {
   return (!valid && dirty) || (!valid && validated);
 });
 
-const keyIncluded = (
-  option: Object,
-  key: string,
-  value: string | undefined
-): boolean => {
-  const valueIncludekey = value?.includes((option as Record<string, any>)[key]);
-
-  return valueIncludekey ?? false;
-};
-
 const emits = defineEmits(["selectChange"]);
 
 onMounted(() => {
@@ -181,8 +171,8 @@ onMounted(() => {
       :placeholder="placeholder"
       :disabled="disabled"
       @input="
-        (e, shouldValidate) => {
-          handleChange(e, shouldValidate);
+        (e: Event) => {
+          handleChange(e);
           emits('selectChange', { name, inputValue });
         }
       "

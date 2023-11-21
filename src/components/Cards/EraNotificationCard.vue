@@ -2,7 +2,7 @@
   <div
     v-for="(notification, index) in notifications"
     v-bind:key="index"
-    class="notification w-full flex flex-row justify-between border-b border-mercury-200 pb-2 px-2"
+    class="notification w-full flex flex-row justify-between items-center border-b border-mercury-200 py-2 px-2"
   >
     <div class="notification-text flex flex-col gap-0.5 justify-center">
       <span class="text">
