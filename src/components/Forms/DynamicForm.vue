@@ -14,7 +14,7 @@
                                 :variation="variation" v-bind="field" :inputType="inputType" :size="size" />
                             <EraSelect v-if="as == 'select'" :type="type" :label="label" :placeholder="placeholder"
                                 :validateSuccess="validateSuccess" :disabled="disabled" :success-message="successMessage"
-                                :variation="variation" v-bind="field" :inputType="inputType" :options="options" :size="size" :config="config" />
+                                :variation="variation" v-bind="field" :inputType="inputType" :options="options" :size="size" :config="config" @selectChange="(e) => emits('selectChange', e)" />
 
                             <template v-if="children && children.length">
                                 <component v-for="({ tag, text, ...childAttrs }, idx) in children" :key="idx" :is="tag"
@@ -48,7 +48,7 @@ configure({
     validateOnInput: false, 
 });
 
-const emits = defineEmits(["submittedForm"])
+const emits = defineEmits(["submittedForm", "selectChange"])
 const onSubmit = (values: ValueOfFieldSchema) => {
     emits("submittedForm", values);
 }

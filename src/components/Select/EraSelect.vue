@@ -13,6 +13,10 @@ import validInputStyle from "../Inputs/useVariation";
 import InputErrorMessage from "../Inputs/InputErrorMessage.vue";
 import InputSuccessMessage from "../Inputs/InputSuccessMessage.vue";
 
+interface opt {
+  [key: string]: any;
+}
+
 const props = defineProps({
   type: {
     type: String,
@@ -59,7 +63,7 @@ const props = defineProps({
     default: "input",
   },
   options: {
-    type: Array,
+    type: Array<opt>,
     default: () => [],
   },
   config: {
@@ -112,7 +116,7 @@ const valueKey = computed(() => {
 });
 
 const inputSize = computed(() => {
-  if (props.size == "small") return "h-[43px]";
+  if (props.size == "small") return "h-[45px]";
   if (props.size == "normal") return "h-[55px]";
   if (props.size == "large") return "h-[62px]";
 });
@@ -151,6 +155,18 @@ const showErrorMessage = computed(() => {
   return (!valid && dirty) || (!valid && validated);
 });
 
+const keyIncluded = (
+  option: Object,
+  key: string,
+  value: string | undefined
+): boolean => {
+  const valueIncludekey = value?.includes((option as Record<string, any>)[key]);
+
+  return valueIncludekey ?? false;
+};
+
+const emits = defineEmits(["selectChange"]);
+
 onMounted(() => {
   initFlowbite();
 });
@@ -164,21 +180,26 @@ onMounted(() => {
       :id="name"
       :placeholder="placeholder"
       :disabled="disabled"
-      @input="handleChange"
+      @input="
+        (e, shouldValidate) => {
+          handleChange(e, shouldValidate);
+          emits('selectChange', { name, inputValue });
+        }
+      "
       @blur="handleBlur"
       :class="[inputStyle, inputSize]"
     >
       {{
-        value
+        inputValue
       }}
-      <option :value="value" disabled>Select a drink</option>
+      <option :value="inputValue" disabled>Select a drink</option>
       <option
-        v-for="option in options"
-        :key="option"
+        v-for="(option, index) in options"
+        :key="index"
         :value="option[valueKey]"
-        :selected="value && value.includes(option)"
+        :selected="value?.includes(option[valueKey])"
       >
-        {{ option[labelKey] || "" }}
+        {{ option?.[labelKey] || "" }}
       </option>
     </select>
 
