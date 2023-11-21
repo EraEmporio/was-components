@@ -5,7 +5,7 @@
         <AvatarImage :class="twMerge('h-full w-full rounded-[inherit] object-cover', avatarStyle.image)"
             :src="profile.photo" :alt="profile.name" />
         <AvatarFallback
-            :class="twMerge('text-grass11 leading-1 flex h-full w-full items-center justify-center bg-gray-200 font-medium text-xs', avatarStyle.fallback)"
+            :class="twMerge('text-grass11 leading-1 flex h-full w-full items-center justify-center', avatarStyle.fallback)"
             :delay-ms="300">
             {{ initials }}
         </AvatarFallback>
@@ -23,21 +23,31 @@ type AvatarStyle = {
     fallback: string,
 };
 
+type Profile = {
+    name: string,
+    photo: string
+}
+
 const props = defineProps({
     profile: {
-        type: Object,
+        type: Object as PropType<Profile>,
         required: true,
-        default: () => { }
+        default: () => {
+            return {
+                name: 'Fernando Pessoa',
+                photo: 'https://flowbite.com/docs/images/people/profile-picture-3.jpg'
+            }
+         }
     },
     avatarStyle: {
         type: Object as PropType<AvatarStyle>,
-        default: () => <AvatarStyle>{ root: '', image: '', fallback: '' },
+        default: () => <AvatarStyle>{ root: '', image: '', fallback: 'bg-gray-200 font-medium text-xs' },
     }
 })
 
 const initials = computed(() => {
     const { name } = props.profile
-    return name.match(/(\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase()
+    return name.match(/(\b\S)?/g)!.join("").match(/(^\S|\S$)?/g)!.join("").toUpperCase()
 })
 
 </script>

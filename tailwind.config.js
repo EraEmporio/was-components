@@ -1,3 +1,5 @@
+import palette from "./src/utils/palette"
+
 /** @type {import('tailwindcss').Config} */
 
 export default {
@@ -24,7 +26,22 @@ export default {
       overlayShow: "overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
       contentShow: "contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1)",
     },
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        '20': 'repeat(20, minmax(0, 1fr))',
+        '22': 'repeat(22, minmax(0, 1fr))',
+        '24': 'repeat(24, minmax(0, 1fr))',
+      },
+      gridColumn: {
+        'span-20': 'span 20 / span 20',
+        'span-22': 'span 22 / span 22',
+        'span-24': 'span 24 / span 24'
+      },
+      colors: {
+        ...palette
+      }
+    },
   },
   plugins: [require("flowbite/plugin")],
 };
