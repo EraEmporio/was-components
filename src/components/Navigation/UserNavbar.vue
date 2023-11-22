@@ -2,13 +2,13 @@
   <nav
     :class="
       twMerge(
-        'bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200dark:border-gray-600',
+        'bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200',
         navConfig.addStyle.navStyle
       )
     "
   >
     <div
-      class="nav-container max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto px-4 md:px-10 py-4"
+      class="nav-container w-full max-w-screen-3xl inline-flex flex-wrap items-center justify-between mx-auto px-4 md:px-10 py-4"
     >
       <a
         :href="navConfig.logo.route"
@@ -30,8 +30,11 @@
         >
       </a>
       <div
-        class="user-container flex items-center md:order-2 space-x-1 md:space-x-0"
+      class="user-container flex items-center md:order-2 space-x-1 md:space-x-0"
       >
+      <div class="extra-container flex items-center space-x-1 md:space-x-0">
+        <slot name="extra"></slot>
+      </div>
         <button
           type="button"
           class="flex items-center py-1.5 px-2.5 gap-3 md:me-0 rounded-lg hover:bg-black/10 focus:bg-black/5 text-sm font-medium"
@@ -43,7 +46,7 @@
         >
           <span class="sr-only">Open user menu</span>
           <era-avatar-fallback-initials
-            style="width: 30px; height: 30px"
+            style="width: 25px; height: 25px"
             :profile="navConfig.profile"
             :avatarStyle="navConfig.avatarStyle"
           />
@@ -70,13 +73,13 @@
           id="user-dropdown"
         >
           <ul
-            class="p-2 space-y-1 text-sm text-gray-800 dark:text-gray-200 dark:hover:text-white"
+            class="p-2 text-sm text-gray-800 divide-y divide-mercury-100"
             aria-labelledby="user-menu-button"
           >
             <li
               v-for="(userlink, index) in userLinks"
               v-bind:key="index"
-              class="flex flex-row items-center px-2 py-1.5 gap-2 rounded-md text-sm bg-black/5  hover:bg-black/10 dark:hover:bg-gray-600"
+              class="flex flex-row items-center py-1.5 px-2 gap-2 rounded-xs text-sm   hover:bg-black/10 "
             >
               <Icon
                 v-if="userlink.icon"
@@ -113,10 +116,10 @@
         </button>
       </div>
       <div
-        class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+        class="navlinks-container items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
         id="navbar-user"
       >
-        <slot name="nav-content"></slot>
+        <slot name="navlinks"></slot>
         <!-- Para configurar navlinks:
           <ul
           class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
