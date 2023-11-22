@@ -10,7 +10,7 @@
         />
       </div>
       <div
-        class="content w-full -top-[50px] relative pt-[60px] pb-8 px-8 flex flex-col gap-3 rounded-[25px] bg-white"
+        class="content w-full -top-[50px] relative pt-[45px] pb-8 px-8 flex flex-col gap-6 rounded-[25px] bg-white"
         style="box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.02)"
       >
         <div class="greetings-container grow inline-flex justify-center">
