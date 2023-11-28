@@ -179,15 +179,18 @@ onMounted(() => {
       @blur="handleBlur"
       :class="[inputStyle, inputSize]"
     >
-      {{
-        inputValue
-      }}
-      <option :value="inputValue" disabled>Select a drink</option>
+      <option
+        :value="inputValue"
+        disabled
+        :selected="options.findIndex((x) => x[valueKey] == inputValue) == -1"
+      >
+        Selecione uma opção
+      </option>
       <option
         v-for="(option, index) in options"
         :key="index"
         :value="option[valueKey]"
-        :selected="value?.includes(option[valueKey])"
+        :selected="inputValue == option[valueKey]"
       >
         {{ option?.[labelKey] || "" }}
       </option>

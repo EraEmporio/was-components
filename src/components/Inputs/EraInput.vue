@@ -64,7 +64,7 @@ const props = defineProps({
 // this is important because vee-validte needs to know if the field name changes
 // https://vee-validate.logaretm.com/v4/guide/composition-api/caveats
 const name = toRef(props, "name");
-
+const initialValue = toRef(props, "value")
 // we don't provide any rules here because we are using form-level validation
 // https://vee-validate.logaretm.com/v4/guide/validation#form-level-validation
 const {
@@ -74,7 +74,7 @@ const {
   handleChange,
   meta,
 } = useField(name, undefined, {
-  initialValue: props.value,
+  initialValue
 });
 
 const variations = {

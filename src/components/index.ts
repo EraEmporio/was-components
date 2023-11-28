@@ -1,7 +1,7 @@
 export { EraAccordion, EraPathAccordion } from "./Accordions"
 export { EraTopAlert } from "./Alerts"
 export { EraAvatarFallbackInitials } from "./Avatar"
-export { EraButton, EraFilterButton, EraRoundedButton, EraSubmitButton } from "./Buttons";
+export { EraButton, EraFilterButton, EraRoundedButton, EraSubmitButton, EraButtonIcon } from "./Buttons";
 export { EraAutarchyCard, EraCardTag, EraNoticeCard, EraNoticeCardWrapper, EraNotificationCard, EraSimpleCard, LobbySection } from "./Cards";
 export { EraCarousel } from "./Carousel"
 export { EraCheckbox } from "./Checkbox";
