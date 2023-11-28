@@ -11,7 +11,7 @@ export { DynamicForm } from "./Forms";
 export { EraInput, EraSearchInput } from "./Inputs";
 export { PageNotFound, LayoutMock, WasVertical, EraAvatarLayout } from "./Layouts"
 export { WasMiniLink } from "./Links"
-export { RatingStars, GiveRatingStars } from "./Miscellaneous";
+export { RatingStars, GiveRatingStars } from "./Ratings";
 export { AlphabeticalCheckboxList } from "./Filter"
 export { EraBottomNavigation } from "./Mobile";
 export { StickyNavbar, UserNavbar } from "./Navigation";

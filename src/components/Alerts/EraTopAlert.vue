@@ -9,7 +9,7 @@
     "
     role="alert"
   >
-    <Icon v-show="icon.show" :icon="icon.icon" />
+    <Icon v-if="icon.show" :icon="icon.icon" />
     <span class="sr-only">Info</span>
     <div :class="twMerge('w-full ms-3 text-sm font-medium', styling.label)">
       {{ label }}

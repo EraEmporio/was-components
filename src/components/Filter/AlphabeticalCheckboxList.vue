@@ -1,7 +1,7 @@
 <template>
-  <div class="alphabet-list-wrapper mt-2">
+  <div class="list-wrapper h-full flex flex-col gap-2">
     <EraSearchInput
-      class="grow mb-3"
+      class="pt-6"
       :searchInputStyle="{
         input: 'focus:ring-0 bg-transparent rounded-full h-[45px]',
         label: '',
@@ -9,56 +9,66 @@
       @searchInput="search"
     />
     <div
-      class="alphabet-list-wrapper--filterLis overflow-y-auto"
-      style="height: calc(100vh - 215px)"
+      class="alphabet-list-wrapper--filterLis flex flex-row gap-3 justify-between overflow-hidden"
+      style="height: calc(100vh - 227px)"
     >
       <div
-        class="alphabet-list-wrapper--sidebar absolute p-2.5 flex flex-col items-center overflow-y-auto overflow-x-clip"
-        style="height: calc(100vh - 230px)"
+        class="alphabet-list-wrapper--sidebar py-2 flex flex-col items-center justify-start gap-2 overflow-auto"
       >
         <div v-for="letter in alphabet" class="alphabet-option">
-          <span
+          <div
             @click="scrollToOption(letter)"
-            class="text-xs hover:text-blue-500 focus:text-blue-500 font-medium cursor-pointer"
+            class="w-6 h-6 p-2 flex items-center justify-center rounded-full bg-transparent active:bg-blue-300 cursor-pointer"
           >
-            {{ letter }}
-          </span>
+            <span class="text-xs focus:text-blue-800 font-medium">{{
+              letter
+            }}</span>
+          </div>
         </div>
       </div>
-
       <div
-        class="checkboxe relative top-3.5 left-10 gap-y-2 flex flex-col overflow-y-auto max-w-[280px]"
-        style="height: calc(100vh - 240px)"
+        class="alphabet-list-wrapper--checkboxe w-full py-4 flex flex-col overflow-auto"
       >
-        <form class="gap-y-2">
-          <EraCheckbox
-            v-for="(filter, index) in filters"
+        <form>
+          <div
+            class="checkboxes-wrapper"
+            v-for="(filter, index) in sortedFilters"
             v-bind:key="index"
-            v-bind="{ ...filter }"
-            :data-alpha="filter.label.charAt(0).toUpperCase()"
-            @checked="(checked) => whoChecked(filter, checked)"
-            class="mb-2"
-          />
+          >
+            <div
+              v-if="shouldPrint(getFirstChar(filter.label))"
+              :data-alpha="getFirstChar(filter.label)"
+              class="checkboxes-wrapper--letter-title"
+            >
+              {{ getFirstChar(filter.label) }}
+            </div>
+            <EraCheckbox
+              v-bind="{ ...filter }"
+             
+              @checked="(checked) => whoChecked(filter, checked)"
+              class="mb-2"
+            />
+          </div>
         </form>
       </div>
     </div>
+    <button
+      @click="emits('applyFilter', checkedCheckboxes)"
+      class="w-full h-[48px] py-5 inline-flex justify-center items-center gap-2.5 text-base text-white bg-blue-800 rounded-lg border border-blue-800"
+    >
+      Aplicar Filtros
+    </button>
   </div>
-  <button
-    @click="emits('applyFilter', checkedCheckboxes)"
-    class="h-[48px] py-5 mt-4 text-base text-white bg-blue-800 rounded-[10px] border border-blue-800 justify-center items-center gap-2.5 inline-flex w-full"
-  >
-    Aplicar Filtros
-  </button>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import EraCheckbox from "../Inputs/EraCheckbox.vue";
 import EraSearchInput from "../Inputs/EraSearchInput.vue";
 
 type FilterType = { label: string; value: string };
 
-defineProps({
+const props = defineProps({
   filters: {
     type: Array<FilterType>,
     default: () => [],
@@ -69,11 +79,46 @@ const emits = defineEmits(["applyFilter"]);
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
   .split("")
   .map((c) => c.toUpperCase());
+const currentLetter = ref("");
+
+const sortedFilters = computed(() => {
+  if (!props.filters) return [];
+  return props.filters.sort((a, b) => a.label.localeCompare(b.label));
+});
+
+const getFirstChar = (value: string) => {
+  return value.charAt(0).toUpperCase();
+};
+
+const shouldPrint = (dataAlpha: string) => {
+  if (dataAlpha != currentLetter.value) {
+    currentLetter.value = dataAlpha;
+    return true;
+  }
+
+  return false;
+};
 
 const search = (inputSearch: string) => {
   console.log(inputSearch);
   //TODO: implementar busca
 };
+
+const highlight = (element: HTMLElement) => {
+    let defaultBG = element.style.backgroundColor;
+    let defaultTransition = element.style.transition;
+
+    element.style.transition = "background 1s";
+    element.style.backgroundColor = "#FDFF47";
+
+    setTimeout(function()
+    {
+        element.style.backgroundColor = defaultBG;
+        setTimeout(function() {
+            element.style.transition = defaultTransition;
+        }, 1000);
+    }, 1000);
+}
 
 const scrollToOption = (searchValue: string) => {
   console.log(searchValue);
@@ -83,6 +128,7 @@ const scrollToOption = (searchValue: string) => {
     const value = opt.getAttribute("data-alpha");
     if (value == searchValue) {
       (opt as HTMLElement).scrollIntoView({ behavior: "smooth" });
+      highlight((opt as HTMLElement))
       return;
     }
   });

@@ -12,13 +12,6 @@ export type Controls = {
         icon: string;
     };
 };
-export type Item = {
-    route: string;
-    alt: string;
-    styling: string
-    
-};
-
 export type Styling = {
     container: string;
     wrapper: string;

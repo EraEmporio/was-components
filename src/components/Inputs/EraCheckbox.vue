@@ -34,9 +34,9 @@ defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col gap-2.5">
+  <div class="checkbox-wrapper flex flex-col gap-2.5">
     <label
-      class="flex flex-row gap-3 items-center [&>.checkbox]:hover:bg-neutral-100"
+      class="flex flex-row gap-2 items-center justify-start [&>.checkbox]:hover:bg-neutral-100"
     >
       <CheckboxRoot
         v-model="checkboxOne"
@@ -45,7 +45,7 @@ defineProps({
         @update:checked="(checked) => emits('checked', checked)"
         :class="
           twMerge(
-            'hover:bg-green3 flex h-[18px] w-[18px] appearance-none items-center justify-center rounded-[4px] bg-white outline-none border border-gray-400',
+            ' flex h-[18px] w-[18px] appearance-none items-center justify-center rounded-[4px] bg-white outline-none border border-gray-400',
             styles.root
           )
         "
@@ -67,3 +67,10 @@ defineProps({
     </label>
   </div>
 </template>
+
+<style scoped>
+::v-deep.checkbox-wrapper label input {
+  position: relative !important;
+  margin-left: -20px !important;
+}
+</style>

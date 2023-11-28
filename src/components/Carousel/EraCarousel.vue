@@ -15,13 +15,13 @@
         :class="twMerge('hidden duration-700 ease-in-out', wrappers.item)"
         data-carousel-item
       >
-      <slot :name="item.alt" :item="item"></slot>
-        <!-- <img :src="item.route" :alt="item.alt" :class="item.styling" /> -->
+      <slot :name="item" >
+      </slot>
       </div>
     </div>
 
     <div
-      v-show="indicators.show"
+      v-if="indicators.show"
       :class="
         twMerge(
           'absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse',
@@ -39,7 +39,7 @@
     </div>
 
     <button
-      v-show="controls.show"
+      v-if="controls.show"
       type="button"
       :class="
         twMerge(
@@ -93,7 +93,7 @@ defineProps({
     type: Object as PropType<type.Indicators>,
     default: () => {
       return {
-        show: true,
+        show: false,
         styling: {
           container: "",
           indicator: "",
@@ -105,7 +105,7 @@ defineProps({
     type: Object as PropType<type.Controls>,
     default: () => {
       return {
-        show: true,
+        show: false,
         styling: {
           container: "",
           icon: "",
@@ -124,7 +124,7 @@ defineProps({
     },
   },
   items: {
-    type: Array<type.Item>,
+    type: Array<String>,
     default: () => [],
   },
 });
