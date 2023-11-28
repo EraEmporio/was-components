@@ -21,6 +21,7 @@
       <span class="sr-only">Close menu</span>
     </button>
 
+    <!-- 
     <p class="mb-6 text-sm text-gray-500 dark:text-gray-400">
       Supercharge your hiring by taking advantage of our
       <a
@@ -42,7 +43,7 @@
         class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
         >Get access
       </a>
-    </div>
+    </div> -->
   </div>
 </template>
 

@@ -22,7 +22,7 @@
         <span
           :class="
             twMerge(
-              'self-center text-2xl font-semibold whitespace-nowrap dark:text-white',
+              'self-center text-2xl font-semibold whitespace-nowrap',
               navConfig.logo.labelStyle
             )
           "
@@ -30,11 +30,11 @@
         >
       </a>
       <div
-      class="user-container flex items-center md:order-2 space-x-1 md:space-x-0"
+        class="user-container flex items-center md:order-2 space-x-1 md:space-x-0"
       >
-      <div class="extra-container flex items-center space-x-1 md:space-x-0">
-        <slot name="extra"></slot>
-      </div>
+        <div class="extra-container flex items-center space-x-1 md:space-x-0">
+          <slot name="extra"></slot>
+        </div>
         <button
           type="button"
           class="flex items-center py-1.5 px-2.5 gap-3 md:me-0 rounded-lg hover:bg-black/10 focus:bg-black/5 text-sm font-medium"
@@ -73,21 +73,26 @@
           id="user-dropdown"
         >
           <ul
-            class="p-2 text-sm text-gray-800 divide-y divide-mercury-100"
+            class="user-menu-links p-2 text-sm text-gray-800 divide-y divide-mercury-100"
             aria-labelledby="user-menu-button"
           >
-            <li
+            <router-link
+              :to="userlink.link"
               v-for="(userlink, index) in userLinks"
               v-bind:key="index"
-              class="flex flex-row items-center py-1.5 px-2 gap-2 rounded-xs text-sm   hover:bg-black/10 "
+              class="user-menu-link"
             >
-              <Icon
-                v-if="userlink.icon"
-                :icon="userlink.icon"
-                class="w-3 h-3"
-              />
-              <a :href="userlink.link" class="block">{{ userlink.label }}</a>
-            </li>
+              <li
+                class="flex flex-row items-center py-1.5 px-2 gap-2 rounded-xs text-sm hover:bg-black/10 border-b border-mercury-100"
+              >
+                <Icon
+                  v-if="userlink.icon"
+                  :icon="userlink.icon"
+                  class="w-3 h-3"
+                />
+                <span>{{ userlink.label }}</span>
+              </li>
+            </router-link>
           </ul>
         </div>
         <button
@@ -199,3 +204,9 @@ onMounted(() => {
   initFlowbite();
 });
 </script>
+
+<style lang="scss" scoped>
+.user-menu-link:last-child{
+  border-color: transparent;
+}
+</style>
