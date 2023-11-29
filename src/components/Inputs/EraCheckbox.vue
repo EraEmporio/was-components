@@ -69,7 +69,7 @@ defineProps({
 </template>
 
 <style scoped>
-::v-deep.checkbox-wrapper label input {
+:deep(.checkbox-wrapper label input) {
   position: relative !important;
   margin-left: -20px !important;
 }

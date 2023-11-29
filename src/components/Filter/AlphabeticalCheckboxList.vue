@@ -9,47 +9,65 @@
       @searchInput="search"
     />
     <div
-      class="alphabet-list-wrapper--filterLis flex flex-row gap-3 justify-between overflow-hidden"
+      class="filter-wrapper flex flex-col gap-2"
       style="height: calc(100vh - 227px)"
     >
-      <div
-        class="alphabet-list-wrapper--sidebar py-2 flex flex-col items-center justify-start gap-2 overflow-auto"
-      >
-        <div v-for="letter in alphabet" class="alphabet-option">
-          <div
-            @click="scrollToOption(letter)"
-            class="w-6 h-6 p-2 flex items-center justify-center rounded-full bg-transparent active:bg-blue-300 cursor-pointer"
-          >
-            <span class="text-xs focus:text-blue-800 font-medium">{{
-              letter
-            }}</span>
-          </div>
+      <div class="filter-wrapper--showBadges flex flex-row flex-wrap gap-1">
+        <div
+          v-for="(badge, index) in badges.filter((badge) => showBadge[badge.value])"
+          v-bind:key="index"
+          class="filter-showBadge inline-flex items-center py-0.5 px-3 gap-2 rounded-full bg-purple-300"
+        >
+          <span class="text-sm pl-1">{{ badge.label }}</span>
+          <button @click="showBadge[badge.value] = !showBadge[badge.value]">
+            <Icon icon="tabler:x" class="w-3 h-auto" />
+          </button>
         </div>
       </div>
       <div
-        class="alphabet-list-wrapper--checkboxe w-full py-4 flex flex-col overflow-auto"
+        class="filter-wrapper--alphalist grow flex flex-row gap-2 justify-between overflow-hidden"
       >
-        <form>
-          <div
-            class="checkboxes-wrapper"
-            v-for="(filter, index) in sortedFilters"
-            v-bind:key="index"
-          >
+        <div
+          class="alphabet-list-wrapper--sidebar px-1 py-2 flex flex-col items-center justify-start gap-2 overflow-y-auto overflow-x-hidden"
+        >
+          <div v-for="letter in alphabet" class="alphabet-option mr-2">
             <div
-              v-if="shouldPrint(getFirstChar(filter.label))"
-              :data-alpha="getFirstChar(filter.label)"
-              class="checkboxes-wrapper--letter-title"
+              @click="scrollToOption(letter)"
+              class="w-6 h-6 p-2 flex items-center justify-center rounded-full bg-transparent active:bg-blue-300 cursor-pointer"
             >
-              {{ getFirstChar(filter.label) }}
+              <span class="text-xs focus:text-blue-800 font-medium">{{
+                letter
+              }}</span>
             </div>
-            <EraCheckbox
-              v-bind="{ ...filter }"
-             
-              @checked="(checked) => whoChecked(filter, checked)"
-              class="mb-2"
-            />
           </div>
-        </form>
+        </div>
+        <div
+          class="alphabet-list-wrapper--checkboxe w-full flex flex-col overflow-auto"
+        >
+          <div
+            class="checkboxes-wrapper mr-3"
+            v-for="(letterGroup, i) in (letterGroups as Array<DataAlpha>)"
+            v-bind:key="i"
+          >
+            <div class="letter-group pb-4">
+              <div
+                class="letter-title sticky top-0 p-1 bg-white/70 backdrop-blur-sm border-b border-gray-300"
+                :data-alpha="letterGroup.letter"
+              >
+                {{ letterGroup.letter }}
+              </div>
+              <div class="letter-filters-group py-1">
+                <EraCheckbox
+                  class="checkbox-filter my-1"
+                  v-for="(filter, j) in letterGroup.filters"
+                  v-bind="filter"
+                  v-bind:key="j"
+                  @checked="(checked) => whoChecked(filter, checked)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <button
@@ -63,10 +81,29 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { Icon } from "@iconify/vue";
 import EraCheckbox from "../Inputs/EraCheckbox.vue";
 import EraSearchInput from "../Inputs/EraSearchInput.vue";
 
 type FilterType = { label: string; value: string };
+type DataAlpha = { letter: string; filters: Array<FilterType> };
+
+let showBadge = ref<Record<string, boolean>>({
+  '1': true,
+  '2': true,
+  '3': true
+});
+
+type BadgeType = {
+  label: string;
+  value: string
+}
+
+const badges = <BadgeType[]>[
+  { label: "filtro 1", value: '1' },
+  { label: "filtro 2", value: '2' },
+  { label: "filtro 3", value: '3' },
+];
 
 const props = defineProps({
   filters: {
@@ -79,24 +116,26 @@ const emits = defineEmits(["applyFilter"]);
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
   .split("")
   .map((c) => c.toUpperCase());
-const currentLetter = ref("");
 
-const sortedFilters = computed(() => {
+const letterGroups = computed(() => {
   if (!props.filters) return [];
-  return props.filters.sort((a, b) => a.label.localeCompare(b.label));
+  const sorted = props.filters.sort((a, b) => a.label.localeCompare(b.label));
+
+  const dataAlpha = <DataAlpha[]>[];
+
+  alphabet.forEach((letter: string) => {
+    let filters = sorted.filter((x) => getFirstChar(x.label) == letter);
+    dataAlpha.push({
+      letter,
+      filters,
+    });
+  });
+
+  return dataAlpha;
 });
 
 const getFirstChar = (value: string) => {
   return value.charAt(0).toUpperCase();
-};
-
-const shouldPrint = (dataAlpha: string) => {
-  if (dataAlpha != currentLetter.value) {
-    currentLetter.value = dataAlpha;
-    return true;
-  }
-
-  return false;
 };
 
 const search = (inputSearch: string) => {
@@ -105,20 +144,19 @@ const search = (inputSearch: string) => {
 };
 
 const highlight = (element: HTMLElement) => {
-    let defaultBG = element.style.backgroundColor;
-    let defaultTransition = element.style.transition;
+  let defaultBG = element.style.backgroundColor;
+  let defaultTransition = element.style.transition;
 
-    element.style.transition = "background 1s";
-    element.style.backgroundColor = "#FDFF47";
+  element.style.transition = "background 1s";
+  element.style.backgroundColor = "#dbdbdb";
 
-    setTimeout(function()
-    {
-        element.style.backgroundColor = defaultBG;
-        setTimeout(function() {
-            element.style.transition = defaultTransition;
-        }, 1000);
+  setTimeout(function () {
+    element.style.backgroundColor = defaultBG;
+    setTimeout(function () {
+      element.style.transition = defaultTransition;
     }, 1000);
-}
+  }, 1000);
+};
 
 const scrollToOption = (searchValue: string) => {
   console.log(searchValue);
@@ -128,7 +166,7 @@ const scrollToOption = (searchValue: string) => {
     const value = opt.getAttribute("data-alpha");
     if (value == searchValue) {
       (opt as HTMLElement).scrollIntoView({ behavior: "smooth" });
-      highlight((opt as HTMLElement))
+      highlight(opt as HTMLElement);
       return;
     }
   });
