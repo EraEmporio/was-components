@@ -14,7 +14,9 @@
     >
       <div class="filter-wrapper--showBadges flex flex-row flex-wrap gap-1">
         <div
-          v-for="(badge, index) in badges.filter((badge) => showBadge[badge.value])"
+          v-for="(badge, index) in badges.filter(
+            (badge) => showBadge[badge.value]
+          )"
           v-bind:key="index"
           class="filter-showBadge inline-flex items-center py-0.5 px-3 gap-2 rounded-full bg-purple-300"
         >
@@ -62,6 +64,11 @@
                   v-for="(filter, j) in letterGroup.filters"
                   v-bind="filter"
                   v-bind:key="j"
+                  :initial-value="
+                    filterState.findIndex(
+                      (state) => state.value == filter.value
+                    ) != -1
+                  "
                   @checked="(checked) => whoChecked(filter, checked)"
                 />
               </div>
@@ -72,9 +79,16 @@
     </div>
     <button
       @click="emits('applyFilter', checkedCheckboxes)"
-      class="w-full h-[48px] py-5 inline-flex justify-center items-center gap-2.5 text-base text-white bg-blue-800 rounded-lg border border-blue-800"
+      :class="
+        twMerge(
+          'w-full h-[48px] py-5 inline-flex justify-center items-center gap-2.5 text-base text-white bg-blue-800 rounded-lg border border-blue-800',
+          checkedCheckboxes.length == 0
+            ? 'bg-slate-200 border-slate-200 pointer-events-none'
+            : ''
+        )
+      "
     >
-      Aplicar Filtros
+      Selecionar Filtros
     </button>
   </div>
 </template>
@@ -84,31 +98,36 @@ import { ref, computed } from "vue";
 import { Icon } from "@iconify/vue";
 import EraCheckbox from "../Inputs/EraCheckbox.vue";
 import EraSearchInput from "../Inputs/EraSearchInput.vue";
+import { twMerge } from "tailwind-merge";
 
 type FilterType = { label: string; value: string };
 type DataAlpha = { letter: string; filters: Array<FilterType> };
 
 let showBadge = ref<Record<string, boolean>>({
-  '1': true,
-  '2': true,
-  '3': true
+  "1": true,
+  "2": true,
+  "3": true,
 });
 
 type BadgeType = {
   label: string;
-  value: string
-}
+  value: string;
+};
 
 const badges = <BadgeType[]>[
-  { label: "filtro 1", value: '1' },
-  { label: "filtro 2", value: '2' },
-  { label: "filtro 3", value: '3' },
+  { label: "filtro 1", value: "1" },
+  { label: "filtro 2", value: "2" },
+  { label: "filtro 3", value: "3" },
 ];
 
 const props = defineProps({
   filters: {
     type: Array<FilterType>,
-    default: () => [],
+    default: () => <FilterType[]>[],
+  },
+  filterState: {
+    type: Array<FilterType>,
+    default: () => <FilterType[]>[],
   },
 });
 
@@ -172,7 +191,7 @@ const scrollToOption = (searchValue: string) => {
   });
 };
 
-const checkedCheckboxes = ref(<FilterType[]>[]);
+const checkedCheckboxes = ref(<FilterType[]>[...props.filterState]);
 const whoChecked = ({ value, label }: FilterType, checked: boolean) => {
   if (!checked) {
     checkedCheckboxes.value = checkedCheckboxes.value.filter(

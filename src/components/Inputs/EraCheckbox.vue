@@ -20,6 +20,10 @@ defineProps({
   value: {
     type: String,
   },
+  initialValue: {
+    type: Boolean,
+    default: false
+  },
   styles: {
     type: Object as PropType<CheckboxStyle>,
     default: () => {
@@ -42,6 +46,7 @@ defineProps({
         v-model="checkboxOne"
         :value="value"
         :name="value"
+        :default-checked="initialValue"
         @update:checked="(checked) => emits('checked', checked)"
         :class="
           twMerge(
