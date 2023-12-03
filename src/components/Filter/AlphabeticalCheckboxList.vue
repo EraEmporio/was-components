@@ -1,5 +1,5 @@
 <template>
-  <div class="list-wrapper h-full flex flex-col gap-2">
+  <div class="list-wrapper h-full flex flex-col gap-2 grow">
     <EraSearchInput
       class="pt-6"
       :searchInputStyle="{
@@ -13,18 +13,7 @@
       style="height: calc(100vh - 227px)"
     >
       <div class="filter-wrapper--showBadges flex flex-row flex-wrap gap-1">
-        <div
-          v-for="(badge, index) in badges.filter(
-            (badge) => showBadge[badge.value]
-          )"
-          v-bind:key="index"
-          class="filter-showBadge inline-flex items-center py-0.5 px-3 gap-2 rounded-full bg-purple-300"
-        >
-          <span class="text-sm pl-1">{{ badge.label }}</span>
-          <button @click="showBadge[badge.value] = !showBadge[badge.value]">
-            <Icon icon="tabler:x" class="w-3 h-auto" />
-          </button>
-        </div>
+        <era-filter-badge :badges="tempBadges" @removeBadge="uncheck" />
       </div>
       <div
         class="filter-wrapper--alphalist grow flex flex-row gap-2 justify-between overflow-hidden"
@@ -67,6 +56,9 @@
                   :initial-value="
                     filterState.findIndex(
                       (state) => state.value == filter.value
+                    ) != -1 ||
+                    checkedCheckboxes.findIndex(
+                      (state) => state.value == filter.value
                     ) != -1
                   "
                   @checked="(checked) => whoChecked(filter, checked)"
@@ -94,31 +86,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { Icon } from "@iconify/vue";
+import { ref, computed, toRef } from "vue";
+import EraFilterBadge from "../Badges/EraFilterBadge.vue";
 import EraCheckbox from "../Inputs/EraCheckbox.vue";
 import EraSearchInput from "../Inputs/EraSearchInput.vue";
 import { twMerge } from "tailwind-merge";
 
 type FilterType = { label: string; value: string };
 type DataAlpha = { letter: string; filters: Array<FilterType> };
-
-let showBadge = ref<Record<string, boolean>>({
-  "1": true,
-  "2": true,
-  "3": true,
-});
-
 type BadgeType = {
   label: string;
   value: string;
+  icon: string;
 };
-
-const badges = <BadgeType[]>[
-  { label: "filtro 1", value: "1" },
-  { label: "filtro 2", value: "2" },
-  { label: "filtro 3", value: "3" },
-];
 
 const props = defineProps({
   filters: {
@@ -129,14 +109,25 @@ const props = defineProps({
     type: Array<FilterType>,
     default: () => <FilterType[]>[],
   },
+  badges: {
+    type: Array<BadgeType>,
+    default: () => <BadgeType[]>[],
+  },
+  icon: {
+    type: String,
+    default: "",
+  },
 });
 
-const emits = defineEmits(["applyFilter"]);
+const refBadges = toRef(props, "badges");
+const tempBadges = ref([...refBadges.value]);
+const emits = defineEmits(["applyFilter", "search"]);
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
   .split("")
   .map((c) => c.toUpperCase());
 
 const letterGroups = computed(() => {
+  console.log(props.filterState, "filterstate");
   if (!props.filters) return [];
   const sorted = props.filters.sort((a, b) => a.label.localeCompare(b.label));
 
@@ -158,8 +149,10 @@ const getFirstChar = (value: string) => {
 };
 
 const search = (inputSearch: string) => {
-  console.log(inputSearch);
-  //TODO: implementar busca
+  console.log({ inputSearch });
+  const search =
+    inputSearch == "" || inputSearch == undefined ? "%%" : inputSearch;
+  emits("search", search);
 };
 
 const highlight = (element: HTMLElement) => {
@@ -178,7 +171,6 @@ const highlight = (element: HTMLElement) => {
 };
 
 const scrollToOption = (searchValue: string) => {
-  console.log(searchValue);
   const opts = document.querySelectorAll("[data-alpha]");
 
   opts.forEach((opt) => {
@@ -191,12 +183,22 @@ const scrollToOption = (searchValue: string) => {
   });
 };
 
+const uncheck = ({ value }: FilterType) => {
+  console.log("uncheck", value);
+  checkedCheckboxes.value = checkedCheckboxes.value.filter(
+    (checkbox) => checkbox.value != value
+  );
+
+  tempBadges.value = tempBadges.value.filter((badge) => badge.value != value);
+};
+
 const checkedCheckboxes = ref(<FilterType[]>[...props.filterState]);
 const whoChecked = ({ value, label }: FilterType, checked: boolean) => {
   if (!checked) {
     checkedCheckboxes.value = checkedCheckboxes.value.filter(
       (checkbox) => checkbox.value != value
     );
+    tempBadges.value = tempBadges.value.filter((badge) => badge.value != value);
 
     return;
   }
@@ -206,6 +208,9 @@ const whoChecked = ({ value, label }: FilterType, checked: boolean) => {
     -1;
 
   if (hasItem) return;
+
   checkedCheckboxes.value.push({ value, label });
+  tempBadges.value.push({ value, label, icon: props.icon });
+  console.log(tempBadges.value);
 };
 </script>

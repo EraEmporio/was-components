@@ -4,16 +4,13 @@ import { CheckboxIndicator, CheckboxRoot } from "radix-vue";
 import { Icon } from "@iconify/vue";
 import { twMerge } from "tailwind-merge";
 
-const checkboxOne = ref(false);
-const emits = defineEmits(["checked"]);
-
 type CheckboxStyle = {
   root: string;
   indicator: string;
   label: string;
 };
 
-defineProps({
+const props = defineProps({
   label: {
     type: String,
   },
@@ -22,7 +19,7 @@ defineProps({
   },
   initialValue: {
     type: Boolean,
-    default: false
+    default: false,
   },
   styles: {
     type: Object as PropType<CheckboxStyle>,
@@ -35,6 +32,9 @@ defineProps({
     },
   },
 });
+
+const checkbox = ref(props.initialValue);
+const emits = defineEmits(["checked"]);
 </script>
 
 <template>
@@ -43,7 +43,7 @@ defineProps({
       class="flex flex-row gap-2 items-center justify-start [&>.checkbox]:hover:bg-neutral-100"
     >
       <CheckboxRoot
-        v-model="checkboxOne"
+        v-model="checkbox"
         :value="value"
         :name="value"
         :default-checked="initialValue"
@@ -72,6 +72,10 @@ defineProps({
     </label>
   </div>
 </template>
+
+<script setup>
+
+</script>
 
 <style scoped>
 :deep(.checkbox-wrapper label input) {

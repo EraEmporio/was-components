@@ -73,7 +73,7 @@ defineProps({
 });
 
 watch([input], () => {
-  if (input.value.length < 3 && input.value != "") return;
+  // if (input.value.length < 3 && input.value != "") return;
 
   emits("searchInput", input);
 });

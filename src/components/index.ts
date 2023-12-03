@@ -19,3 +19,4 @@ export { EraSimpleGallery } from "./PhotoGallery";
 export { EraSelect } from "./Select";
 export { EraTabs } from "./Tabs";
 export { FirstTitle, SecondTitle, HighlightTitle, SectionTitle } from "./Titles"
+export { EraFilterBadge } from './Badges'
