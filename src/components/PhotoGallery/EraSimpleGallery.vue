@@ -22,7 +22,6 @@ export default {
         images: Array<{ largeURL: string, width: string, height: string, thumbnailURL: string, span: string }>,
     },
     setup(props) {
-        console.log({images: props.images})
         return {
             imagesData: props.images,
             lightbox: '' as any

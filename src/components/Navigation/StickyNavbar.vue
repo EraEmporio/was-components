@@ -85,7 +85,6 @@ const normalState =
 const checkIfIsSelected = (route: string) => {
   const routeIsActive =
     route == selectedRoute.route || route == props.currentRoute;
-  console.log(props.currentRoute);
   return routeIsActive ? twMerge(normalState, activeState) : normalState;
 };
 

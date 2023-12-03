@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="submitSearch">
     <label
       for="default-search"
       :class="
@@ -40,7 +40,7 @@
           )
         "
         :placeholder="placeholder"
-        required
+        @input="emitInputByTyping"
         v-model="input"
       />
     </div>
@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, ref, watch } from "vue";
+import { PropType, ref } from "vue";
 import { twMerge } from "tailwind-merge";
 
 type SearchStyle = {
@@ -72,9 +72,10 @@ defineProps({
   },
 });
 
-watch([input], () => {
-  // if (input.value.length < 3 && input.value != "") return;
-
+const emitInputByTyping = () => {
   emits("searchInput", input);
-});
+};
+const submitSearch = () => {
+  emits("searchInput", input);
+};
 </script>

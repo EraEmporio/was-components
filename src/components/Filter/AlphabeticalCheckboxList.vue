@@ -1,9 +1,9 @@
 <template>
-  <div class="list-wrapper h-full flex flex-col gap-2 grow">
+  <div class="list-wrapper h-full flex flex-col gap-2">
     <EraSearchInput
       class="pt-6"
       :searchInputStyle="{
-        input: 'focus:ring-0 bg-transparent rounded-full h-[45px]',
+        input: 'focus:ring-0 bg-transparent rounded-full h-[45px] w-full',
         label: '',
       }"
       @searchInput="search"
@@ -13,7 +13,7 @@
       style="height: calc(100vh - 227px)"
     >
       <div class="filter-wrapper--showBadges flex flex-row flex-wrap gap-1">
-        <era-filter-badge :badges="tempBadges" @removeBadge="uncheck" />
+        <era-filter-badge :badges="tempBadges" />
       </div>
       <div
         class="filter-wrapper--alphalist grow flex flex-row gap-2 justify-between overflow-hidden"
@@ -21,7 +21,11 @@
         <div
           class="alphabet-list-wrapper--sidebar px-1 py-2 flex flex-col items-center justify-start gap-2 overflow-y-auto overflow-x-hidden"
         >
-          <div v-for="letter in alphabet" class="alphabet-option mr-2">
+          <div
+            v-for="letter, i in alphabet"
+            class="alphabet-option mr-2"
+            v-bind:key="i"
+          >
             <div
               @click="scrollToOption(letter)"
               class="w-6 h-6 p-2 flex items-center justify-center rounded-full bg-transparent active:bg-blue-300 cursor-pointer"
@@ -37,7 +41,7 @@
         >
           <div
             class="checkboxes-wrapper mr-3"
-            v-for="(letterGroup, i) in (letterGroups as Array<DataAlpha>)"
+            v-for="(letterGroup, i) in (letterGroups)"
             v-bind:key="i"
           >
             <div class="letter-group pb-4">
@@ -127,7 +131,6 @@ const alphabet = "abcdefghijklmnopqrstuvwxyz"
   .map((c) => c.toUpperCase());
 
 const letterGroups = computed(() => {
-  console.log(props.filterState, "filterstate");
   if (!props.filters) return [];
   const sorted = props.filters.sort((a, b) => a.label.localeCompare(b.label));
 
@@ -149,7 +152,6 @@ const getFirstChar = (value: string) => {
 };
 
 const search = (inputSearch: string) => {
-  console.log({ inputSearch });
   const search =
     inputSearch == "" || inputSearch == undefined ? "%%" : inputSearch;
   emits("search", search);
@@ -178,19 +180,18 @@ const scrollToOption = (searchValue: string) => {
     if (value == searchValue) {
       (opt as HTMLElement).scrollIntoView({ behavior: "smooth" });
       highlight(opt as HTMLElement);
-      return;
     }
   });
 };
 
-const uncheck = ({ value }: FilterType) => {
+/* const uncheck = ({ value }: FilterType) => {
   console.log("uncheck", value);
   checkedCheckboxes.value = checkedCheckboxes.value.filter(
     (checkbox) => checkbox.value != value
   );
 
   tempBadges.value = tempBadges.value.filter((badge) => badge.value != value);
-};
+}; */
 
 const checkedCheckboxes = ref(<FilterType[]>[...props.filterState]);
 const whoChecked = ({ value, label }: FilterType, checked: boolean) => {
@@ -211,6 +212,5 @@ const whoChecked = ({ value, label }: FilterType, checked: boolean) => {
 
   checkedCheckboxes.value.push({ value, label });
   tempBadges.value.push({ value, label, icon: props.icon });
-  console.log(tempBadges.value);
 };
 </script>

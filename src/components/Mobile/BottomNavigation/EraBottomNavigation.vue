@@ -30,11 +30,11 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, onMounted } from "vue";
+import { PropType } from "vue";
 
 type ButtonNavigation = { icon: string; label: string; route: string };
 
-const props = defineProps({
+defineProps({
   buttonsForNavigation: {
     type: Array as PropType<Array<ButtonNavigation>>,
     default: () => <ButtonNavigation[]>[],
@@ -45,8 +45,4 @@ const emits = defineEmits(["pushRoute"]);
 const emitChangeRoute = (route: string) => {
   emits("pushRoute", route);
 };
-
-onMounted(() => {
-  console.log(props.buttonsForNavigation);
-});
 </script>
