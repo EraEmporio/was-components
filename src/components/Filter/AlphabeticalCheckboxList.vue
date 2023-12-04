@@ -1,5 +1,5 @@
 <template>
-  <div class="list-wrapper h-full flex flex-col gap-2">
+  <div class="list-wrapper h-full w-full flex flex-col gap-2">
     <EraSearchInput
       class="pt-6"
       :searchInputStyle="{
@@ -8,10 +8,7 @@
       }"
       @searchInput="search"
     />
-    <div
-      class="filter-wrapper flex flex-col gap-2"
-      style="height: calc(100vh - 227px)"
-    >
+    <div class="filter-wrapper flex flex-col gap-2">
       <div class="filter-wrapper--showBadges flex flex-row flex-wrap gap-1">
         <era-filter-badge :badges="tempBadges" />
       </div>
@@ -22,7 +19,7 @@
           class="alphabet-list-wrapper--sidebar px-1 py-2 flex flex-col items-center justify-start gap-2 overflow-y-auto overflow-x-hidden"
         >
           <div
-            v-for="letter, i in alphabet"
+            v-for="(letter, i) in alphabet"
             class="alphabet-option mr-2"
             v-bind:key="i"
           >
@@ -41,7 +38,7 @@
         >
           <div
             class="checkboxes-wrapper mr-3"
-            v-for="(letterGroup, i) in (letterGroups)"
+            v-for="(letterGroup, i) in letterGroups"
             v-bind:key="i"
           >
             <div class="letter-group pb-4">
@@ -214,3 +211,10 @@ const whoChecked = ({ value, label }: FilterType, checked: boolean) => {
   tempBadges.value.push({ value, label, icon: props.icon });
 };
 </script>
+
+<style scoped>
+.filter-wrapper {
+  height: calc(100vh - 227px); /* fallback */
+  height: calc(100dvh - 227px);
+}
+</style>
