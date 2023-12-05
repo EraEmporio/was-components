@@ -23,6 +23,10 @@ defineProps({
     type: Boolean,
     default: true,
   },
+  btnTriggerLabel: {
+    type: String,
+    default: "Open Dialog",
+  },
 });
 
 const open = ref(false);
@@ -43,7 +47,7 @@ defineExpose({
         )
       "
     >
-      Edit profile
+      {{ btnTriggerLabel }}
     </DialogTrigger>
     <DialogPortal>
       <DialogOverlay

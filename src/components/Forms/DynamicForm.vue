@@ -112,6 +112,6 @@ configure({
 
 const emits = defineEmits(["submittedForm", "selectChange"]);
 const onSubmit = (values: ValueOfFieldSchema) => {
-  emits("submittedForm", values);
+  emits("submittedForm", {...values});
 };
 </script>
