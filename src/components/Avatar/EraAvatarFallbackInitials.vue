@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType } from "vue";
+import { computed, PropType, toRef } from "vue";
 import { twMerge } from "tailwind-merge";
 import { AvatarFallback, AvatarImage, AvatarRoot } from "radix-vue";
 
@@ -69,9 +69,11 @@ const props = defineProps({
   },
 });
 
+const profileRefs = toRef(props, "profile");
+
 const initials = computed(() => {
-  if (!props.profile.name) return "UK";
-  const { name } = props.profile;
+  if (!profileRefs.value.name) return "UK";
+  const { name } = profileRefs.value;
   return name
     .match(/(\b\S)?/g)!
     .join("")
