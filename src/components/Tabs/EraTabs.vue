@@ -25,16 +25,17 @@
           )
         "
       >
-        {{ tab.name }}
+        {{ tab.name }} 
       </TabsTrigger>
     </TabsList>
     <div class="content-wrapper h-full overflow-auto">
       <TabsContent
-        v-for="{ refName, componentProps, component } in tabs"
+        v-for="{ refName, componentProps, component, on } in tabs"
         :class="twMerge('py-3 rounded-b-md outline-none flex flex-col h-full', tabStyle.tabsContent)"
         :value="refName"
       >
-        <component :is="component" v-bind="componentProps" />
+        <component v-if="on" :is="component" v-bind="componentProps" v-on="on" />
+        <component v-else :is="component" v-bind="componentProps" />
       </TabsContent>
     </div>
   </TabsRoot>
@@ -50,6 +51,7 @@ type EraTabs = {
   refName: string;
   component: any;
   componentProps: Object;
+  on: Object;
 };
 
 type TabStyle = {
