@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200"
+    class="fixed bottom-0 left-0 z-20 w-full h-16 bg-white border-t border-gray-200"
   >
     <div class="flex h-full max-w-lg mx-auto font-medium">
       <template
