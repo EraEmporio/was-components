@@ -20,7 +20,7 @@
         :value="tab.refName"
         :class="
           twMerge(
-            'px-5 h-[45px] flex-1 flex items-center justify-center text-sm leading-none select-none first:rounded-tl-md last:rounded-tr-md  data-[state=active]:border-blue-600 data-[state=active]:border-b-4 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:text-blue-600 data-[state=active]:font-medium outline-none cursor-default',
+            'px-5 h-[45px] flex-1 flex items-center justify-center text-sm leading-none select-none first:rounded-tl-md last:rounded-tr-md border-b-4 border-transparent data-[state=active]:border-blue-600 data-[state=active]:shadow-[inset_0_-1px_0_0,0_1px_0_0] data-[state=active]:shadow-current data-[state=active]:text-blue-600 data-[state=active]:font-medium outline-none cursor-default',
             tabStyle.tabsTrigger
           )
         "
@@ -31,7 +31,7 @@
     <div class="content-wrapper h-full overflow-auto">
       <TabsContent
         v-for="{ refName, componentProps, component } in tabs"
-        :class="twMerge('py-3 rounded-b-md outline-none flex flex-col h-full ', tabStyle.tabsContent)"
+        :class="twMerge('py-3 rounded-b-md outline-none flex flex-col h-full', tabStyle.tabsContent)"
         :value="refName"
       >
         <component :is="component" v-bind="componentProps" />

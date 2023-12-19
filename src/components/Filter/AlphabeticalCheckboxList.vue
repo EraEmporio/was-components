@@ -19,16 +19,16 @@
           class="alphabet-list-wrapper--sidebar px-1 py-2 flex flex-col items-center justify-start gap-2 overflow-y-auto overflow-x-hidden"
         >
           <div
-            v-for="(letter, i) in alphabet"
+            v-for="(letter, i) in letterGroups.filter(x => x.filters.length > 0)"
             class="alphabet-option mr-2"
             v-bind:key="i"
           >
             <div
-              @click="scrollToOption(letter)"
+              @click="scrollToOption(letter.letter)"
               class="w-6 h-6 p-2 flex items-center justify-center rounded-full bg-transparent active:bg-blue-300 cursor-pointer"
             >
               <span class="text-xs focus:text-blue-800 font-medium">{{
-                letter
+                letter.letter
               }}</span>
             </div>
           </div>
@@ -38,7 +38,7 @@
         >
           <div
             class="checkboxes-wrapper mr-3"
-            v-for="(letterGroup, i) in letterGroups"
+            v-for="(letterGroup, i) in letterGroups.filter(x => x.filters.length > 0)"
             v-bind:key="i"
           >
             <div class="letter-group pb-4">

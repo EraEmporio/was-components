@@ -85,11 +85,11 @@
   </Form>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { Form, Field, configure } from "vee-validate";
 import { Schema } from "./constants";
 import { EraSelect } from "../Select";
-import { toRef, watch } from "vue";
+import { toRef } from "vue";
 
 const props = defineProps<{
   formId: string;
@@ -101,10 +101,6 @@ const props = defineProps<{
 type ValueOfFieldSchema = { [key: string]: string };
 
 const refSchema = toRef(props, "schema");
-
-watch(refSchema, (d) => { 
-  console.log({d})
-})
 
 configure({
   validateOnInput: false,
