@@ -13,9 +13,9 @@
 import EraRoundedIconButton from "../Buttons/EraRoundedIconButton.vue";
 
 type button = {
-  config: string;
+  config: object;
   icon: string;
-  style: {
+  styling: {
     button: string;
     icon: string;
   };
