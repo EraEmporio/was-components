@@ -1,6 +1,6 @@
 <template>
   <!-- toggle modal button -->
-    <!-- <button
+  <!-- <button
         data-modal-target="default-modal"
         data-modal-toggle="default-modal"
         class="modal-help-button rounded-md px-4 py-2 text-sm font-bold text-gray-600 bg-transparent active:bg-slate-100 border-t border-b border-gray-200"
@@ -74,10 +74,12 @@
 </template>
 
 <script setup lang="ts">
+import { Modal } from "flowbite";
+import type { modalBackdrop } from "flowbite";
+
 import { Icon } from "@iconify/vue";
 import { twMerge } from "tailwind-merge";
-import { PropType } from "vue";
-import type { modalBackdrop } from "flowbite";
+import { PropType, onMounted, ref } from "vue";
 
 type EraModalStyle = {
   container: string;
@@ -87,7 +89,10 @@ type EraModalStyle = {
 };
 
 const props = defineProps({
-  id: String,
+  id: {
+    type: String,
+    default: "",
+  },
   backdrop: String as PropType<modalBackdrop>,
   styling: {
     type: Object as PropType<EraModalStyle>,
@@ -101,4 +106,39 @@ const props = defineProps({
     },
   },
 });
+
+const modalRef = ref({});
+const open = ref(false);
+
+onMounted(() => {
+  const $modalElement: HTMLElement | null = document.getElementById(props.id);
+
+  /* const modalOptions: ModalOptions = {
+    onHide: () => {
+      console.log("modal is hidden");
+    },
+    onShow: () => {
+      console.log("modal is shown");
+    },
+    onToggle: () => {
+      console.log("modal has been toggled");
+    },
+  }; */
+
+  // instance options object
+  /* const instanceOptions: InstanceOptions = {
+    id: props.id,
+    override: true,
+  };
+ */
+  modalRef.value = new Modal(
+    $modalElement
+    /*   modalOptions,
+    instanceOptions */
+  );
+
+  /* modalRef.value.show(); */
+});
+
+defineExpose({ modalRef, open });
 </script>
