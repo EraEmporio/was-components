@@ -1,6 +1,18 @@
 <template>
+  <!-- toggle modal button -->
+    <!-- <button
+        data-modal-target="default-modal"
+        data-modal-toggle="default-modal"
+        class="modal-help-button rounded-md px-4 py-2 text-sm font-bold text-gray-600 bg-transparent active:bg-slate-100 border-t border-b border-gray-200"
+        type="button"
+      >
+        <Icon icon="material-symbols:help" />
+    </button> 
+    -->
+
   <div
-    :id="id"
+    :id="props.id"
+    :data-modal-backdrop="props.backdrop"
     tabindex="-1"
     aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -10,15 +22,15 @@
         :class="
           twMerge(
             'modal-container relative bg-white rounded-[30px] shadow mx-4',
-            styling.container
+            props.styling.container
           )
         "
       >
         <div
           :class="
             twMerge(
-              'modal-content--header flex items-center justify-between p-4 md:p-5 rounded-t',
-              styling.header
+              'modal-content--header flex items-center justify-between px-4 py-4 md:px-5 md:py-5 rounded-t',
+              props.styling.header
             )
           "
         >
@@ -40,7 +52,7 @@
           :class="
             twMerge(
               'modal-content--body px-6 py-1 flex flex-col items-center gap-6',
-              styling.body
+              props.styling.body
             )
           "
         >
@@ -50,7 +62,7 @@
           :class="
             twMerge(
               'modal-content--footer flex items-center p-4 md:p-5 rounded-b',
-              styling.footer
+              props.styling.footer
             )
           "
         >
@@ -59,22 +71,13 @@
       </div>
     </div>
   </div>
-  <!-- toggle modal button
-    <button
-        data-modal-target="default-modal"
-        data-modal-toggle="default-modal"
-        class="modal-help-button rounded-md px-4 py-2 text-sm font-bold text-gray-600 bg-transparent active:bg-slate-100 border-t border-b border-gray-200"
-        type="button"
-      >
-        <Icon icon="material-symbols:help" />
-    </button> 
-  -->
 </template>
 
 <script setup lang="ts">
 import { Icon } from "@iconify/vue";
 import { twMerge } from "tailwind-merge";
 import { PropType } from "vue";
+import type { modalBackdrop } from "flowbite";
 
 type EraModalStyle = {
   container: string;
@@ -83,8 +86,9 @@ type EraModalStyle = {
   footer: string;
 };
 
-defineProps({
+const props = defineProps({
   id: String,
+  backdrop: String as PropType<modalBackdrop>,
   styling: {
     type: Object as PropType<EraModalStyle>,
     default: () => {
