@@ -17,7 +17,14 @@
     aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
   >
-    <div class="modal-wrapper relative p-4 w-full max-w-2xl max-h-full">
+    <div
+      :class="
+        twMerge(
+          'modal-wrapper relative p-4 w-full max-w-2xl max-h-full',
+          props.styling.wrapper
+        )
+      "
+    >
       <div
         :class="
           twMerge(
@@ -82,6 +89,7 @@ import { twMerge } from "tailwind-merge";
 import { PropType, onMounted, ref } from "vue";
 
 type EraModalStyle = {
+  wrapper: string;
   container: string;
   header: string;
   body: string;
@@ -98,6 +106,7 @@ const props = defineProps({
     type: Object as PropType<EraModalStyle>,
     default: () => {
       return {
+        wrapper: "",
         container: "",
         header: "",
         body: "",
