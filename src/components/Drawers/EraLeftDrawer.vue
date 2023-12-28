@@ -22,32 +22,28 @@
     :aria-labelledby="id"
     :class="
       twMerge(
-        'w-full md:w-[40%] xl:w-[25%] fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white',
+        'w-full md:w-[40%] xl:w-[25%] fixed top-0 left-0 z-40 h-dvh p-4 overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
         styling.drawer
       )
     "
   >
-    <h5
-      id="drawer-left-label"
-      :class="
-        twMerge(
-          'inline-flex items-center mb-4 text-base font-semibold text-gray-500',
-          styling.title
-        )
-      "
-    >
-      {{ title }}
-    </h5>
     <button
       type="button"
       :data-drawer-hide="id"
       :aria-controls="id"
-      class="text-gray-600 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center"
+      :class="
+        twMerge(
+          'left-drawer--closebtn w-8 h-8 z-50 absolute top-2.5 end-2.5 inline-flex items-center justify-center bg-white hover:bg-gray-200 rounded-full text-sm text-gray-600 hover:text-gray-900',
+          styling.closebtn
+        )
+      "
     >
-      <Icon icon="ph:x" />
+      <Icon :icon="btnicon" />
       <span class="sr-only">Close menu</span>
     </button>
-    <div class="drawer-content--wrapper bg-teal-300"><slot></slot></div>
+    <div class="drawer-content--wrapper">
+      <slot></slot>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
@@ -62,9 +58,12 @@ type LeftDrawerStyle = {
 };
 
 defineProps({
-  title: String,
   id: {
     type: String,
+  },
+  btnicon: {
+    type: String,
+    default: "ph:x",
   },
   styling: {
     type: Object as PropType<LeftDrawerStyle>,
