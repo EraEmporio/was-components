@@ -1,15 +1,4 @@
 <template>
-  <!-- toggle modal button -->
-  <!-- <button
-        data-modal-target="default-modal"
-        data-modal-toggle="default-modal"
-        class="modal-help-button rounded-md px-4 py-2 text-sm font-bold text-gray-600 bg-transparent active:bg-slate-100 border-t border-b border-gray-200"
-        type="button"
-      >
-        <Icon icon="material-symbols:help" />
-    </button> 
-    -->
-
   <div
     :id="props.id"
     :data-modal-backdrop="props.backdrop"
@@ -50,6 +39,7 @@
             type="button"
             class="modal-header--closebtn text-slate-400 bg-transparent active:bg-slate-100 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
             :data-modal-hide="id"
+            @click="removeAllBackdrops"
           >
             <Icon icon="ic:round-close" class="w-5 h-5" />
             <span class="sr-only">Close modal</span>
@@ -81,10 +71,17 @@
 </template>
 
 <script setup lang="ts">
+import { Modal } from "flowbite";
+import type {
+  modalBackdrop,
+  InstanceOptions,
+  ModalOptions,
+  ModalInterface,
+} from "flowbite";
+
 import { Icon } from "@iconify/vue";
 import { twMerge } from "tailwind-merge";
-import { PropType } from "vue";
-import type { modalBackdrop } from "flowbite";
+import { PropType, onMounted, ref } from "vue";
 
 type EraModalStyle = {
   wrapper: string;
@@ -95,8 +92,15 @@ type EraModalStyle = {
 };
 
 const props = defineProps({
-  id: String,
+  id: {
+    type: String,
+    default: "",
+  },
   backdrop: String as PropType<modalBackdrop>,
+  closable: {
+    type: Boolean,
+    default: true,
+  },
   styling: {
     type: Object as PropType<EraModalStyle>,
     default: () => {
@@ -110,4 +114,43 @@ const props = defineProps({
     },
   },
 });
+
+const modalRef = ref({});
+
+onMounted(() => {
+  const $modalElement: HTMLElement | null = document.getElementById(props.id);
+
+  const modalOptions: ModalOptions = {
+    backdrop: props.backdrop,
+    /*   backdropClasses: "bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40", */
+    closable: props.closable,
+    onHide: () => {
+      console.log("modal is hidden");
+    },
+    onShow: () => {
+      const newDiv = document.createElement("div");
+      newDiv.setAttribute("modal-backdrop", "");
+
+      const app = document.getElementById("app");
+      document.body.insertBefore(newDiv, app);
+    },
+    onToggle: () => {
+      console.log("modal has been toggled");
+    },
+  };
+
+  // instance options object
+  const instanceOptions: InstanceOptions = {
+    id: props.id,
+    override: true,
+  };
+
+  modalRef.value = new Modal($modalElement, modalOptions, instanceOptions);
+});
+
+const removeAllBackdrops = () => {
+  (modalRef.value as ModalInterface).hide();
+};
+
+defineExpose({ modalRef });
 </script>

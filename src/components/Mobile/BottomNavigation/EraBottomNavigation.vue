@@ -14,9 +14,8 @@
         >
           <component
             :is="btnNavigation.icon"
-            class="w-5 h-5 mb-2 text-gray-500 group-hover:text-blue-600"
+            :class="twMerge('w-5 h-5 mb-2 text-gray-500 fill-gray-500 group-hover:text-blue-600', btnNavigation.iconStyle)"
             fill="currentColor"
-            viewBox="0 0 20 20"
           />
 
           <span
@@ -30,9 +29,10 @@
 </template>
 
 <script lang="ts" setup>
+import { twMerge } from "tailwind-merge";
 import { PropType } from "vue";
 
-type ButtonNavigation = { icon: string; label: string; route: string };
+type ButtonNavigation = { icon: string; label: string; route: string, iconStyle: string };
 
 defineProps({
   buttonsForNavigation: {
