@@ -22,7 +22,7 @@
     :aria-labelledby="id"
     :class="
       twMerge(
-        'w-full md:w-[40%] xl:w-[25%] fixed top-0 left-0 z-40 h-dvh p-4 overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
+        'w-full md:w-[40%] xl:w-[24%] fixed top-0 left-0 z-40 h-dvh p-4 overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
         styling.drawer
       )
     "
@@ -41,7 +41,7 @@
       <Icon :icon="btnicon" />
       <span class="sr-only">Close menu</span>
     </button>
-    <div class="drawer-content--wrapper">
+    <div class="drawer-content--wrapper h-full">
       <slot></slot>
     </div>
   </div>

@@ -1,14 +1,11 @@
 <template>
-  <div class="list-wrapper h-full w-full flex flex-col gap-2">
+  <div class="alphablist-wrapper h-full w-full flex flex-col gap-2">
     <EraSearchInput
-      class="pt-6"
-      :searchInputStyle="{
-        input: 'focus:ring-0 bg-transparent rounded-full h-[45px] w-full',
-        label: '',
-      }"
+      class="alphablist-input"
+      :searchInputStyle="styling.searchInput"
       @searchInput="search"
     />
-    <div class="filter-wrapper flex flex-col gap-2">
+    <div class="alphablist-filter--wrapper flex flex-col gap-2">
       <div class="filter-wrapper--showBadges flex flex-row flex-wrap gap-1">
         <era-filter-badge :badges="tempBadges" />
       </div>
@@ -19,7 +16,9 @@
           class="alphabet-list-wrapper--sidebar px-1 py-2 flex flex-col items-center justify-start gap-2 overflow-y-auto overflow-x-hidden"
         >
           <div
-            v-for="(letter, i) in letterGroups.filter(x => x.filters.length > 0)"
+            v-for="(letter, i) in letterGroups.filter(
+              (x) => x.filters.length > 0
+            )"
             class="alphabet-option mr-2"
             v-bind:key="i"
           >
@@ -38,7 +37,9 @@
         >
           <div
             class="checkboxes-wrapper mr-3"
-            v-for="(letterGroup, i) in letterGroups.filter(x => x.filters.length > 0)"
+            v-for="(letterGroup, i) in letterGroups.filter(
+              (x) => x.filters.length > 0
+            )"
             v-bind:key="i"
           >
             <div class="letter-group pb-4">
@@ -74,7 +75,7 @@
       @click="emits('applyFilter', checkedCheckboxes)"
       :class="
         twMerge(
-          'w-full h-[48px] py-5 inline-flex justify-center items-center gap-2.5 text-base text-white bg-blue-800 rounded-lg border border-blue-800',
+          'alphablist-button w-full h-[48px] py-5 inline-flex justify-center items-center gap-2.5 text-base text-white bg-blue-800 rounded-lg border border-blue-800',
           checkedCheckboxes.length == 0
             ? 'bg-slate-200 border-slate-200 pointer-events-none'
             : ''
@@ -87,7 +88,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, toRef } from "vue";
+import { ref, computed, toRef, PropType } from "vue";
 import EraFilterBadge from "../Badges/EraFilterBadge.vue";
 import EraCheckbox from "../Inputs/EraCheckbox.vue";
 import EraSearchInput from "../Inputs/EraSearchInput.vue";
@@ -99,6 +100,12 @@ type BadgeType = {
   label: string;
   value: string;
   icon: string;
+};
+type AlphabListStyle = {
+      searchInput: {
+      input: string;
+      label: string;
+    };
 };
 
 const props = defineProps({
@@ -118,7 +125,27 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  styling: {
+    type: Object as PropType<AlphabListStyle>,
+    default: () => {
+      return {
+        searchInput: {
+          input: "",
+          label: "",
+        },
+      };
+    },
+  },
 });
+
+const styling = computed(() => {
+  return {
+  searchInput: {
+    input: props.styling.searchInput.input,
+    label: props.styling.searchInput.label,
+  },
+}
+}) ;
 
 const refBadges = toRef(props, "badges");
 const tempBadges = ref([...refBadges.value]);
@@ -213,8 +240,10 @@ const whoChecked = ({ value, label }: FilterType, checked: boolean) => {
 </script>
 
 <style scoped>
-.filter-wrapper {
-  height: calc(100vh - 227px); /* fallback */
-  height: calc(100dvh - 227px);
+@media screen and (max-width: 640px) {
+  .alphablist-filter--wrapper {
+    height: calc(100vh - 227px); /* fallback */
+    height: calc(100dvh - 227px);
+  }
 }
 </style>
