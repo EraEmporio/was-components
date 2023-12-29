@@ -31,6 +31,7 @@
       type="button"
       :data-drawer-hide="id"
       :aria-controls="id"
+      @click="closeDrawer"
       :class="
         twMerge(
           'left-drawer--closebtn w-8 h-8 z-50 absolute top-2.5 end-2.5 inline-flex items-center justify-center bg-white hover:bg-gray-200 rounded-full text-sm text-gray-600 hover:text-gray-900',
@@ -47,9 +48,13 @@
   </div>
 </template>
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, onMounted, ref } from "vue";
 import { twMerge } from "tailwind-merge";
 import { Icon } from "@iconify/vue";
+
+import { Drawer } from "flowbite";
+import type { DrawerOptions, DrawerInterface } from "flowbite";
+import type { InstanceOptions } from "flowbite";
 
 type LeftDrawerStyle = {
   drawer: string;
@@ -57,9 +62,10 @@ type LeftDrawerStyle = {
   closebtn: string;
 };
 
-defineProps({
+const props = defineProps({
   id: {
     type: String,
+    default: "",
   },
   btnicon: {
     type: String,
@@ -75,5 +81,54 @@ defineProps({
       };
     },
   },
+  startOpen: {
+    type: Boolean,
+    default: false,
+  },
 });
+
+const drawerRef = ref({});
+const emits = defineEmits(["onHide", "onToggle", "onShow"]);
+
+onMounted(() => {
+  const $targetEl: HTMLElement | null = document.getElementById(props.id);
+
+  // options with default values
+  const options: DrawerOptions = {
+    onHide: () => {
+      emits("onHide");
+    },
+    onShow: () => {
+      emits("onShow");
+    },
+    onToggle: () => {
+      emits("onToggle");
+    },
+  };
+
+  // instance options object
+  const instanceOptions: InstanceOptions = {
+    id: props.id,
+  };
+
+  /*
+   * $targetEl (required)
+   * options (optional)
+   * instanceOptions (optional)
+   */
+  drawerRef.value = new Drawer($targetEl, options, instanceOptions);
+
+  // show the drawer
+  console.log(props.startOpen, drawerRef.value);
+  if (props.startOpen) {
+    (drawerRef.value as DrawerInterface).show();
+    return;
+  }
+});
+
+const closeDrawer = () => {
+  (drawerRef.value as DrawerInterface).hide();
+};
+
+defineExpose({ drawerRef });
 </script>

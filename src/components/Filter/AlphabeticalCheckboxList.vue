@@ -5,7 +5,14 @@
       :searchInputStyle="styling.searchInput"
       @searchInput="search"
     />
-    <div class="alphablist-filter--wrapper flex flex-col gap-2">
+    <div
+      :class="
+        twMerge(
+          'alphablist-filter--wrapper flex flex-col gap-2',
+          styling.filter
+        )
+      "
+    >
       <div class="filter-wrapper--showBadges flex flex-row flex-wrap gap-1">
         <era-filter-badge :badges="tempBadges" />
       </div>
@@ -102,10 +109,11 @@ type BadgeType = {
   icon: string;
 };
 type AlphabListStyle = {
-      searchInput: {
-      input: string;
-      label: string;
-    };
+  searchInput: {
+    input: string;
+    label: string;
+  };
+  filter: string;
 };
 
 const props = defineProps({
@@ -133,6 +141,7 @@ const props = defineProps({
           input: "",
           label: "",
         },
+        filter: "",
       };
     },
   },
@@ -140,12 +149,13 @@ const props = defineProps({
 
 const styling = computed(() => {
   return {
-  searchInput: {
-    input: props.styling.searchInput.input,
-    label: props.styling.searchInput.label,
-  },
-}
-}) ;
+    searchInput: {
+      input: props.styling.searchInput.input,
+      label: props.styling.searchInput.label,
+    },
+    filter: props.styling.filter
+  };
+});
 
 const refBadges = toRef(props, "badges");
 const tempBadges = ref([...refBadges.value]);

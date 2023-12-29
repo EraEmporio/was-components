@@ -12,10 +12,14 @@
           type="button"
           class="inline-flex flex-col grow items-center justify-center px-5 hover:bg-gray-50 group"
         >
-          <component
-            :is="btnNavigation.icon"
-            :class="twMerge('w-5 h-5 mb-2 text-gray-500 fill-gray-500 group-hover:text-blue-600', btnNavigation.iconStyle)"
-            fill="currentColor"
+          <Icon
+            :icon="btnNavigation.icon"
+            :class="
+              twMerge(
+                'w-5 h-5 mb-2 text-gray-500 group-hover:text-blue-600',
+                btnNavigation.iconStyle
+              )
+            "
           />
 
           <span
@@ -29,10 +33,16 @@
 </template>
 
 <script lang="ts" setup>
-import { twMerge } from "tailwind-merge";
 import { PropType } from "vue";
+import { twMerge } from "tailwind-merge";
+import { Icon } from "@iconify/vue";
 
-type ButtonNavigation = { icon: string; label: string; route: string, iconStyle: string };
+type ButtonNavigation = {
+  icon: string;
+  label: string;
+  route: string;
+  iconStyle: string;
+};
 
 defineProps({
   buttonsForNavigation: {
