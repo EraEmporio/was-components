@@ -9,7 +9,7 @@
     <div
       :class="
         twMerge(
-          'modal-wrapper relative p-4 w-full max-w-2xl max-h-full',
+          'modal-wrapper relative px-4 py-4 w-full max-w-2xl max-h-full',
           props.styling.wrapper
         )
       "
