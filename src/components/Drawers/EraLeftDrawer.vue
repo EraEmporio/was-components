@@ -127,5 +127,5 @@ const closeDrawer = () => {
   (drawerRef.value as DrawerInterface).hide();
 };
 
-defineExpose({ drawerRef, setCloseButtonVisibility });
+defineExpose({ drawerRef, setCloseButtonVisibility, closeDrawer });
 </script>
