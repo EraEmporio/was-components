@@ -6,12 +6,13 @@
     :aria-labelledby="id"
     :class="
       twMerge(
-        'w-full md:w-[40%] xl:w-[24%] fixed top-0 left-0 z-40 h-dvh p-4 overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
+        'w-full md:w-[40%] lg:w-[27%] 2xl:w-[24%] fixed top-0 left-0 z-40 h-dvh p-4 overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
         styling.drawer
       )
     "
   >
     <button
+      v-if="showCloseButton"
       type="button"
       :data-drawer-hide="id"
       :aria-controls="id"
@@ -46,6 +47,11 @@ type LeftDrawerStyle = {
   closebtn: string;
 };
 
+const showCloseButton = ref(false);
+const setCloseButtonVisibility = (visibility:boolean) => {
+  showCloseButton.value = visibility
+}
+
 const props = defineProps({
   id: {
     type: String,
@@ -72,7 +78,7 @@ const props = defineProps({
   backdrop: {
     type: Boolean,
     default: false,
-  }
+  },
 });
 
 const drawerRef = ref({});
@@ -83,13 +89,15 @@ onMounted(() => {
 
   // options with default values
   const options: DrawerOptions = {
-    placement: 'left',
+    placement: "left",
     backdrop: props.backdrop,
     onHide: () => {
       emits("onHide");
+      showCloseButton.value = false
     },
     onShow: () => {
       emits("onShow");
+      showCloseButton.value = true
     },
     onToggle: () => {
       emits("onToggle");
@@ -119,5 +127,5 @@ const closeDrawer = () => {
   (drawerRef.value as DrawerInterface).hide();
 };
 
-defineExpose({ drawerRef });
+defineExpose({ drawerRef, setCloseButtonVisibility });
 </script>
