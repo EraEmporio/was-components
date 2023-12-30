@@ -218,15 +218,6 @@ const scrollToOption = (searchValue: string) => {
   });
 };
 
-/* const uncheck = ({ value }: FilterType) => {
-  console.log("uncheck", value);
-  checkedCheckboxes.value = checkedCheckboxes.value.filter(
-    (checkbox) => checkbox.value != value
-  );
-
-  tempBadges.value = tempBadges.value.filter((badge) => badge.value != value);
-}; */
-
 const checkedCheckboxes = ref(<FilterType[]>[...props.filterState]);
 const whoChecked = ({ value, label }: FilterType, checked: boolean) => {
   if (!checked) {

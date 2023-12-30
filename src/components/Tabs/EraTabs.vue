@@ -25,7 +25,7 @@
           )
         "
       >
-        {{ tab.name }}
+        {{ tab.name }} 
       </TabsTrigger>
     </TabsList>
     <div class="content-wrapper h-full overflow-auto">
@@ -51,7 +51,7 @@ type EraTabs = {
   refName: string;
   component: any;
   componentProps: Object;
-  on: any;
+  on: Object;
 };
 
 type TabStyle = {
