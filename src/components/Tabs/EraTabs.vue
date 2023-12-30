@@ -30,11 +30,12 @@
     </TabsList>
     <div class="content-wrapper h-full overflow-auto">
       <TabsContent
-        v-for="{ refName, componentProps, component } in tabs"
+        v-for="{ refName, componentProps, component, on }, index in tabs"
         :class="twMerge('py-3 rounded-b-md outline-none flex flex-col h-full', tabStyle.tabsContent)"
         :value="refName"
+        v-bind:key="index"
       >
-        <component :is="component" v-bind="componentProps" />
+        <component :is="component" v-bind="componentProps" v-on="on" />
       </TabsContent>
     </div>
   </TabsRoot>
@@ -50,6 +51,7 @@ type EraTabs = {
   refName: string;
   component: any;
   componentProps: Object;
+  on: any;
 };
 
 type TabStyle = {

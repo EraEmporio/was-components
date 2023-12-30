@@ -125,7 +125,8 @@ onMounted(() => {
     /*   backdropClasses: "bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40", */
     closable: props.closable,
     onHide: () => {
-      console.log("modal is hidden");
+      const backdrop = document.querySelector('[modal-backdrop]') as HTMLElement
+      backdrop.style.display = 'none'
     },
     onShow: () => {
       const newDiv = document.createElement("div");
@@ -134,9 +135,7 @@ onMounted(() => {
       const app = document.getElementById("app");
       document.body.insertBefore(newDiv, app);
     },
-    onToggle: () => {
-      console.log("modal has been toggled");
-    },
+    onToggle: () => {},
   };
 
   // instance options object

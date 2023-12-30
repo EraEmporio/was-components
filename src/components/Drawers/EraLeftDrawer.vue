@@ -1,20 +1,4 @@
 <template>
-  <!-- drawer init and toggle -->
-  <!--  
-          <div class="text-center">
-              <button
-              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2   focus:outline-none 
-              type="button"
-              :data-drawer-target="id"
-              :data-drawer-show="id"
-              data-drawer-placement="left"
-              :aria-controls="id"
-              >
-              Show left drawer
-              </button>
-          </div> 
-      -->
-
   <!-- drawer component -->
   <div
     :id="id"
@@ -34,7 +18,7 @@
       @click="closeDrawer"
       :class="
         twMerge(
-          'left-drawer--closebtn w-8 h-8 z-50 absolute top-2.5 end-2.5 inline-flex items-center justify-center bg-white hover:bg-gray-200 rounded-full text-sm text-gray-600 hover:text-gray-900',
+          'left-drawer--closebtn w-8 h-8 absolute z-[90] top-2.5 end-2.5 inline-flex items-center justify-center bg-white hover:bg-gray-200 rounded-full text-sm text-gray-600 hover:text-gray-900',
           styling.closebtn
         )
       "
@@ -85,6 +69,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  backdrop: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const drawerRef = ref({});
@@ -95,6 +83,8 @@ onMounted(() => {
 
   // options with default values
   const options: DrawerOptions = {
+    placement: 'left',
+    backdrop: props.backdrop,
     onHide: () => {
       emits("onHide");
     },
@@ -119,7 +109,6 @@ onMounted(() => {
   drawerRef.value = new Drawer($targetEl, options, instanceOptions);
 
   // show the drawer
-  console.log(props.startOpen, drawerRef.value);
   if (props.startOpen) {
     (drawerRef.value as DrawerInterface).show();
     return;
