@@ -1,3 +1,4 @@
-import NotificationDrawer from './NotificationDrawer.vue'
+import EraRightDrawer from './EraRightDrawer.vue'
+import EraLeftDrawer from './EraLeftDrawer.vue'
 
-export { NotificationDrawer }
+export { EraRightDrawer, EraLeftDrawer }
