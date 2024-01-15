@@ -6,7 +6,7 @@
     :aria-labelledby="id"
     :class="
       twMerge(
-        'w-full md:w-[40%] lg:w-[27%] 2xl:w-[24%] fixed top-0 left-0 z-40 h-dvh p-4 overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
+        'w-full md:w-[40%] lg:w-[27%] 2xl:w-[24%] fixed top-0 left-0 z-40 h-dvh overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
         styling.drawer
       )
     "
