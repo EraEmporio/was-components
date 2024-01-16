@@ -125,8 +125,10 @@ onMounted(() => {
     /*   backdropClasses: "bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40", */
     closable: props.closable,
     onHide: () => {
-      const backdrop = document.querySelector('[modal-backdrop]') as HTMLElement
-      backdrop.style.display = 'none'
+      const backdrop = document.querySelector(
+        "[modal-backdrop]"
+      ) as HTMLElement;
+      backdrop.style.display = "none";
     },
     onShow: () => {
       const newDiv = document.createElement("div");
@@ -149,6 +151,9 @@ onMounted(() => {
 
 const removeAllBackdrops = () => {
   (modalRef.value as ModalInterface).hide();
+
+  const backdrop = document.querySelector("[modal-backdrop]") as HTMLElement;
+  backdrop.style.display = "none";
 };
 
 defineExpose({ modalRef });

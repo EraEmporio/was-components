@@ -35,7 +35,8 @@
         :value="refName"
         v-bind:key="index"
       >
-        <component :is="component" v-bind="componentProps" v-on="on" />
+        <component v-if="on" :is="component" v-bind="componentProps" v-on="on" />
+        <component v-else :is="component" v-bind="componentProps" />
       </TabsContent>
     </div>
   </TabsRoot>
