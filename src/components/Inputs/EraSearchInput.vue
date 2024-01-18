@@ -79,3 +79,8 @@ const submitSearch = () => {
   emits("searchInput", input);
 };
 </script>
+<style>
+#default-search::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+</style>
