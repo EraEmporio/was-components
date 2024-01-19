@@ -4,7 +4,7 @@
     :data-modal-backdrop="props.backdrop"
     tabindex="-1"
     aria-hidden="true"
-    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-dvh max-h-dvh"
   >
     <div
       :class="
@@ -39,7 +39,7 @@
             type="button"
             class="modal-header--closebtn text-slate-400 bg-transparent active:bg-slate-100 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
             :data-modal-hide="id"
-            @click="removeAllBackdrops"
+            :id="'close' + id"
           >
             <Icon icon="ic:round-close" class="w-5 h-5" />
             <span class="sr-only">Close modal</span>
@@ -53,7 +53,7 @@
             )
           "
         >
-          <slot name="body"></slot>
+          <slot :closeModal="hideModal" name="body"></slot>
         </div>
         <div
           :class="
@@ -76,7 +76,6 @@ import type {
   modalBackdrop,
   InstanceOptions,
   ModalOptions,
-  ModalInterface,
 } from "flowbite";
 
 import { Icon } from "@iconify/vue";
@@ -149,12 +148,17 @@ onMounted(() => {
   modalRef.value = new Modal($modalElement, modalOptions, instanceOptions);
 });
 
-const removeAllBackdrops = () => {
-  (modalRef.value as ModalInterface).hide();
-
-  const backdrop = document.querySelector("[modal-backdrop]") as HTMLElement;
-  backdrop.style.display = "none";
+const hideModal = () => {
+  const closeButton = document.getElementById("close" + props.id);
+  console.log(closeButton);
+  closeButton?.click();
 };
 
-defineExpose({ modalRef });
+/* const removeAllBackdrops = () => {
+  hideModal();
+  const backdrop = document.querySelector("[modal-backdrop]") as HTMLElement;
+  backdrop.style.display = "none";
+}; */
+
+defineExpose({ modalRef, hideModal });
 </script>
