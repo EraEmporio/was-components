@@ -1,7 +1,7 @@
 <template>
   <div
-    :id="props.id"
-    :data-modal-backdrop="props.backdrop"
+    :id="id"
+    :data-modal-backdrop="backdrop"
     tabindex="-1"
     aria-hidden="true"
     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-dvh max-h-dvh"
@@ -10,7 +10,7 @@
       :class="
         twMerge(
           'modal-wrapper relative px-4 py-4 w-full max-w-2xl max-h-full',
-          props.styling.wrapper
+          styling.wrapper
         )
       "
     >
@@ -18,7 +18,7 @@
         :class="
           twMerge(
             'modal-container relative bg-white rounded-[30px] shadow mx-4',
-            props.styling.container
+            styling.container
           )
         "
       >
@@ -26,7 +26,7 @@
           :class="
             twMerge(
               'modal-content--header flex items-center justify-between px-4 py-4 md:px-5 md:py-5 rounded-t',
-              props.styling.header
+              styling.header
             )
           "
         >
@@ -49,7 +49,7 @@
           :class="
             twMerge(
               'modal-content--body px-6 py-1 flex flex-col items-center gap-6',
-              props.styling.body
+              styling.body
             )
           "
         >
@@ -59,7 +59,7 @@
           :class="
             twMerge(
               'modal-content--footer flex items-center p-4 md:p-5 rounded-b',
-              props.styling.footer
+              styling.footer
             )
           "
         >
@@ -150,7 +150,6 @@ onMounted(() => {
 
 const hideModal = () => {
   const closeButton = document.getElementById("close" + props.id);
-  console.log(closeButton);
   closeButton?.click();
 };
 

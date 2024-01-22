@@ -13,6 +13,7 @@
   >
     <button
       v-if="showCloseButton"
+      :id="'close' + id"
       type="button"
       :data-drawer-hide="id"
       :aria-controls="id"
@@ -48,9 +49,9 @@ type LeftDrawerStyle = {
 };
 
 const showCloseButton = ref(false);
-const setCloseButtonVisibility = (visibility:boolean) => {
-  showCloseButton.value = visibility
-}
+const setCloseButtonVisibility = (visibility: boolean) => {
+  showCloseButton.value = visibility;
+};
 
 const props = defineProps({
   id: {
@@ -84,6 +85,19 @@ const props = defineProps({
 const drawerRef = ref({});
 const emits = defineEmits(["onHide", "onToggle", "onShow"]);
 
+const hideDrawer = () => {
+  const closeButton = document.getElementById("close" + props.id);
+  closeButton?.click();
+};
+
+const showDrawer = () => {
+  (drawerRef.value as DrawerInterface).show();
+};
+
+const closeDrawer = () => {
+  (drawerRef.value as DrawerInterface).hide();
+};
+
 onMounted(() => {
   const $targetEl: HTMLElement | null = document.getElementById(props.id);
 
@@ -93,11 +107,11 @@ onMounted(() => {
     backdrop: props.backdrop,
     onHide: () => {
       emits("onHide");
-      showCloseButton.value = false
+      showCloseButton.value = false;
     },
     onShow: () => {
       emits("onShow");
-      showCloseButton.value = true
+      showCloseButton.value = true;
     },
     onToggle: () => {
       emits("onToggle");
@@ -117,15 +131,12 @@ onMounted(() => {
   drawerRef.value = new Drawer($targetEl, options, instanceOptions);
 
   // show the drawer
+
   if (props.startOpen) {
-    (drawerRef.value as DrawerInterface).show();
+    showDrawer();
     return;
   }
 });
 
-const closeDrawer = () => {
-  (drawerRef.value as DrawerInterface).hide();
-};
-
-defineExpose({ drawerRef, setCloseButtonVisibility, closeDrawer });
+defineExpose({ drawerRef, setCloseButtonVisibility, closeDrawer, hideDrawer, showDrawer });
 </script>
