@@ -37,9 +37,13 @@
           </h3>
           <button
             type="button"
-            class="modal-header--closebtn text-slate-400 bg-transparent active:bg-slate-100 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
             :data-modal-hide="id"
             :id="'close' + id"
+            class="text-inherit top-0 absolute p-0.5"
+          ></button>
+          <button
+            @click="hideModal()"
+            class="modal-header--closebtn text-slate-400 bg-transparent active:bg-slate-100 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
           >
             <Icon icon="ic:round-close" class="w-5 h-5" />
             <span class="sr-only">Close modal</span>
@@ -72,11 +76,7 @@
 
 <script setup lang="ts">
 import { Modal } from "flowbite";
-import type {
-  modalBackdrop,
-  InstanceOptions,
-  ModalOptions,
-} from "flowbite";
+import type { modalBackdrop, InstanceOptions, ModalOptions } from "flowbite";
 
 import { Icon } from "@iconify/vue";
 import { twMerge } from "tailwind-merge";
@@ -148,16 +148,20 @@ onMounted(() => {
   modalRef.value = new Modal($modalElement, modalOptions, instanceOptions);
 });
 
+const removeAllBackdrops = () => {
+  /* hideModal(); */
+  const backdrop = document.querySelector("[modal-backdrop]") as HTMLElement;
+  /* backdrop.style.display = "none"; */
+  if (backdrop) {
+    backdrop.remove();
+  }
+};
+
 const hideModal = () => {
   const closeButton = document.getElementById("close" + props.id);
   closeButton?.click();
+  removeAllBackdrops();
 };
-
-/* const removeAllBackdrops = () => {
-  hideModal();
-  const backdrop = document.querySelector("[modal-backdrop]") as HTMLElement;
-  backdrop.style.display = "none";
-}; */
 
 defineExpose({ modalRef, hideModal });
 </script>
