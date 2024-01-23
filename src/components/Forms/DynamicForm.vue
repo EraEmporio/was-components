@@ -7,7 +7,7 @@
         resetFormAfterSubmit ? resetForm() : null;
       "
     >
-      <div class="grid grid-cols-10 gap-6">
+      <div :class="twMerge('grid grid-cols-10 gap-6', styling)">
         <template
           v-for="{
             name,
@@ -86,13 +86,15 @@
 </template>
 
 <script setup lang="ts">
+import { toRef } from "vue";
+import { twMerge } from "tailwind-merge";
 import { Form, Field, configure } from "vee-validate";
 import { Schema } from "./constants";
 import { EraSelect } from "../Select";
-import { toRef } from "vue";
 
 const props = defineProps<{
   formId: string;
+  styling: string;
   schema: Schema;
   validationSchema: Object;
   resetFormAfterSubmit: boolean;
