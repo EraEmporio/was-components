@@ -3,8 +3,10 @@
     <form
       :id="formId"
       @submit="
-        handleSubmit($event, onSubmit);
-        resetFormAfterSubmit ? resetForm() : null;
+        async ($event) => {
+          await handleSubmit($event, onSubmit);
+          resetFormAfterSubmit ? resetForm() : null;
+        }
       "
     >
       <div :class="twMerge('grid grid-cols-10 gap-6', styling)">
