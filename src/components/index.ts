@@ -3,7 +3,7 @@ export { EraTopAlert } from "./Alerts"
 export { EraAvatarFallbackInitials } from "./Avatar"
 export { EraFilterBadge } from './Badges'
 export { EraButton, EraFilterButton, EraRoundedButton, EraRoundedIconButton, EraSubmitButton, EraButtonIcon } from "./Buttons";
-export { EraAutarchyCard, EraCardTag, EraNoticeCard, EraNoticeCardWrapper, EraNotificationCard, EraSimpleCard, LobbySection } from "./Cards";
+export { EraPictureCard, EraCardTag, EraNoticeCard, EraNoticeCardWrapper, EraNotificationCard, EraSimpleCard, LobbySection } from "./Cards";
 export { EraCarousel } from "./Carousel"
 export { EraCheckbox } from "./Checkbox";
 export { EraDialog } from "./Dialogs";
