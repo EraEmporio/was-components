@@ -13,6 +13,8 @@ export type NoticeCard = {
 export type PictureCard = {
     image: string
     label: string
+    params: Object
+    onClick: Function
 }
 
 export type PictureCardStyle = {

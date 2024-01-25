@@ -5,7 +5,7 @@ export type ButtonNavigation =
         route: string
     }
 
-export type NavConfig = {
+export type NavParams = {
     logo: {
         route: string,
         label: string,
