@@ -1,3 +1,4 @@
+import EraSelectDropdown from "./EraSelectDropdown.vue"
 import EraUserDropdown from "./EraUserDropdown.vue";
 
-export { EraUserDropdown }
+export { EraSelectDropdown, EraUserDropdown }

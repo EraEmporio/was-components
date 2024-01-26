@@ -8,7 +8,7 @@ export { EraCarousel } from "./Carousel"
 export { EraCheckbox } from "./Checkbox";
 export { EraDialog } from "./Dialogs";
 export { EraRightDrawer, EraLeftDrawer } from "./Drawers"
-export { EraUserDropdown } from "./Dropdowns"
+export { EraSelectDropdown, EraUserDropdown } from "./Dropdowns"
 export { AlphabeticalCheckboxList } from "./Filter"
 export { DynamicForm } from "./Forms";
 export { EraInput, EraSearchInput } from "./Inputs";
