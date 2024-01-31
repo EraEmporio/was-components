@@ -2,23 +2,23 @@ export default {
     root: ({ props, state }) => ({
         class: [
             // Display and Position
-            'inline-flex',
+            'inline-flex items-center',
             'relative',
+            'px-1 py-2.5',
 
             // Shape
-            'w-full md:w-56',
-            'rounded-md',
-            'shadow-sm',
+            'w-full md:w-56 h-12',
+            'rounded-lg',
+            
 
             // Color and Background
-            'bg-teal-200 dark:bg-surface-900', 
-            {'bg-pink-300': props.pink},
+            'bg-transparent hover:bg-mercury-200/20', 
 
             // States
-            { 'ring-1 ring-inset ring-surface-300 dark:ring-surface-700': !state.focused, 'ring-2 ring-inset ring-primary-500 dark:ring-primary-400': state.focused },
+            { 'border border-mercury-200 dark:border-surface-700': !state.focused, 'ring-1 ring-mercury-300 ring-inset': state.focused },
 
             // Misc
-            'cursor-default',
+            'cursor-pointer',
             'select-none',
             { 'opacity-60': props.disabled, 'pointer-events-none': props.disabled }
         ]
@@ -27,12 +27,10 @@ export default {
         class: [
             //Font
             'font-sans',
-            'leading-6',
-            'sm:text-sm',
 
             // Display
-            'block',
-            'flex-auto',
+            'grow',
+            'inline-flex items-center justify-center',
 
             // Color and Background
             'bg-transparent',
@@ -42,7 +40,7 @@ export default {
 
             // Sizing and Spacing
             'w-[1%]',
-            'py-1.5 px-3',
+            'px-2.5',
             { 'pr-7': props.showClear },
 
             //Shape
@@ -73,32 +71,30 @@ export default {
             'shrink-0',
 
             // Color and Background
-            'bg-transparent',
-            'text-surface-500',
+            'text-mercury-500',
 
-            // Size
-            'w-12',
+            // Sizing and Space
+            'w-auto',
+            'px-2.5',
 
-            // Shape
-            'rounded-tr-md',
-            'rounded-br-md'
+            // Extra
+            'cursor-pointer'
         ]
     },
     panel: {
         class: [
             // Position
-            'absolute top-0 left-0',
-            'mt-2',
+            'absolute -top-1 left-0',
+            '-mt-2',
 
             // Shape
             'border-0',
-            'rounded-md',
-            'shadow-md',
+            'rounded-lg',
 
             // Color
             'bg-surface-0 dark:bg-surface-800',
             'text-surface-800 dark:text-white/80',
-            'ring-1 ring-inset ring-surface-300 dark:ring-surface-700'
+            'ring-1 ring-inset ring-copper-100/20'
         ]
     },
     wrapper: {
@@ -111,13 +107,15 @@ export default {
         ]
     },
     list: {
-        class: 'py-1 list-none m-0'
+        class: 'list-none m-0 rounded-lg border border-mercury-200 bg-white divide-y divide-mercury-200 font-sans font-[Lato]'
     },
     item: ({ context }) => ({
         class: [
             // Font
             'sm:text-sm',
             'leading-none',
+            'text-center',
+            'font-sans font-[Lato]',
             { 'font-normal': !context.selected, 'font-bold': context.selected },
 
             // Position
@@ -125,21 +123,21 @@ export default {
 
             // Shape
             'border-0',
-            'rounded-none',
+            'rounded-lg',
 
             // Spacing
             'm-0',
-            'py-2 px-4',
+            'py-4 px-4',
 
             // Color
-            { 'text-surface-700 dark:text-white/80': !context.focused && !context.selected },
-            { 'bg-surface-200 dark:bg-surface-600/60 text-surface-700 dark:text-white/80': context.focused && !context.selected },
-            { 'bg-primary-500 dark:bg-primary-400 text-white dark:text-surface-700': context.focused && context.selected },
-            { 'bg-transparent text-surface-700 dark:text-white/80': !context.focused && context.selected },
+            { 'text-mercury-900 bg-copper-200/20': !context.focused && !context.selected },
+            { 'bg-mercury-200  text-mercury-700': context.focused && !context.selected },
+            { 'bg-mercury-500': context.focused && context.selected },
+            { 'bg-transparent text-mercury-900': !context.focused && context.selected },
 
             //States
-            'hover:bg-primary-500 dark:hover:bg-primary-400 hover:text-white dark:hover:text-surface-700',
-            'focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400',
+            'bg-transparent hover:bg-mercury-200/20',
+            'focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-mercury-300 ',
 
             // Misc
             'cursor-pointer',
@@ -158,8 +156,8 @@ export default {
             'py-2 px-4',
 
             // Color
-            'text-surface-800 dark:text-white/80',
-            'bg-surface-0 dark:bg-surface-600/80',
+            'text-mercury-900',
+            'bg-mercury-0 ',
 
             // Misc
             'cursor-auto'
@@ -205,7 +203,7 @@ export default {
             'sm:text-sm',
 
             // Sizing
-            'py-1.5 px-3',
+            'px-3',
             'pr-7',
             '-mr-7',
             'w-full',

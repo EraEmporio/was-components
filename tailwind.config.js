@@ -1,4 +1,4 @@
-import sh3Pallete from "./src/utils/SH3Palette"
+import sh3Pallete from "./src/utils/SH3Pallete"
 import primeVuePallete from "./src/utils/primeVuePallete"
 
 /** @type {import('tailwindcss').Config} */
