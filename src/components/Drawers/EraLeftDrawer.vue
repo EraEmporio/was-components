@@ -6,7 +6,7 @@
     :aria-labelledby="id"
     :class="
       twMerge(
-        'w-full md:w-[40%] lg:w-[35%] xl:w-[27%] 2xl:w-[24%] fixed top-0 left-0 z-40 h-dvh overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
+        'era-left-drawer w-full md:w-[40%] lg:w-[35%] xl:w-[27%] 2xl:w-[24%] fixed top-0 left-0 z-40 overflow-y-auto transition-transform -translate-x-full bg-white shadow-sm',
         styling.drawer
       )
     "
@@ -14,6 +14,7 @@
     <button
       v-if="showCloseButton"
       :id="'close' + id"
+      title="fechar"
       type="button"
       :data-drawer-hide="id"
       :aria-controls="id"
@@ -140,3 +141,9 @@ onMounted(() => {
 
 defineExpose({ drawerRef, setCloseButtonVisibility, closeDrawer, hideDrawer, showDrawer });
 </script>
+<style>
+.era-left-drawer{
+  height: 100vh; /* callback */
+  height: 100dvh;
+}
+</style>

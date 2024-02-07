@@ -21,6 +21,7 @@ export { StickyNavbar, UserNavbar } from "./Navigation";
 export { EraSimpleGallery } from "./PhotoGallery";
 export { RatingStars, GiveRatingStars } from "./Ratings";
 export { EraSelect } from "./Select";
+export { ToggleBigSidebar, ToggleSidebar, ToggleSmallSidebar } from "./Sidebares"
 export { EraTabs } from "./Tabs";
 export { TextMiddleLine } from "./Texts"
 export { FirstTitle, SecondTitle, HighlightTitle, SectionTitle } from "./Titles"

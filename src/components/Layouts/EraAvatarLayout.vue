@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-container grid grid-cols-24 w-screen">
+  <div class="layout-container grid grid-cols-24">
     <div
       class="main-container mt-2 col-start-2 col-span-22 flex flex-col items-center justify-center"
     >
@@ -74,5 +74,9 @@ defineProps({
   color: white;
   font-size: 30px;
   line-height: 36px;
+}
+.layout-container {
+  width: 99vw;
+  width: 99dvw;
 }
 </style>

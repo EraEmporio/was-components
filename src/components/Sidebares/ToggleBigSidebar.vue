@@ -1,0 +1,71 @@
+<template>
+  <div
+    :class="
+      twMerge(
+        'toggle-big--sidebar max-w-[320px] w-[20%] flex flex-col gap-1 bg-white',
+        styling.container
+      )
+    "
+  >
+    <div
+      :class="
+        twMerge(
+          'toggle-big-sidebar--header w-full h-[10%]',
+          styling.header
+        )
+      "
+    >
+      <slot name="header"></slot>
+    </div>
+    <div
+      :class="
+        twMerge(
+          'toggle-big-sidebar--body w-full grow',
+          styling.body
+        )
+      "
+    >
+      <slot name="body"></slot>
+    </div>
+    <div
+      :class="
+        twMerge(
+          'toggle-big-sidebar--footer w-full h-[10%]',
+          styling.footer
+        )
+      "
+    >
+      <slot name="footer"></slot>
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { PropType } from "vue";
+import { twMerge } from "tailwind-merge";
+
+type BigSidebarStyle = {
+  container: string;
+  header: string;
+  body: string;
+  footer: string;
+};
+
+defineProps({
+  styling: {
+    type: Object as PropType<BigSidebarStyle>,
+    default: () => {
+      return {
+        container: "",
+        header: "",
+        body: "",
+        footer: "",
+      };
+    },
+  },
+});
+</script>
+<style scoped>
+.toggle-big--sidebar {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+</style>
