@@ -2,6 +2,7 @@
   <button
     v-bind="config"
     @click="config.clickEvent"
+    :title="title"
     type="button"
     :class="twMerge('rounded-icon-btn p-3 rounded-full text-white bg-black/30 hover:bg-black/50', styling.button)"
   >
@@ -19,6 +20,10 @@ type RoundedIcoStyle = {
 }
 
 defineProps({
+  title: {
+    type: String,
+    default: ''
+  },
   config: {
     type: Object,
     default: () => {}

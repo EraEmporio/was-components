@@ -3,11 +3,12 @@ export { EraTopAlert } from "./Alerts"
 export { EraAvatarFallbackInitials } from "./Avatar"
 export { EraFilterBadge } from './Badges'
 export { EraButton, EraFilterButton, EraRoundedButton, EraRoundedIconButton, EraSubmitButton, EraButtonIcon } from "./Buttons";
-export { EraAutarchyCard, EraCardTag, EraNoticeCard, EraNoticeCardWrapper, EraNotificationCard, EraSimpleCard, LobbySection } from "./Cards";
+export { EraPictureCard, EraCardTag, EraNoticeCard, EraNoticeCardWrapper, EraNotificationCard, EraSimpleCard, LobbySection } from "./Cards";
 export { EraCarousel } from "./Carousel"
 export { EraCheckbox } from "./Checkbox";
 export { EraDialog } from "./Dialogs";
 export { EraRightDrawer, EraLeftDrawer } from "./Drawers"
+export { EraSelectDropdown, EraUserDropdown } from "./Dropdowns"
 export { AlphabeticalCheckboxList } from "./Filter"
 export { DynamicForm } from "./Forms";
 export { EraInput, EraSearchInput } from "./Inputs";

@@ -1,4 +1,5 @@
-import palette from "./src/utils/palette"
+import sh3Pallete from "./src/utils/SH3Pallete"
+import primeVuePallete from "./src/utils/primeVuePallete"
 
 /** @type {import('tailwindcss').Config} */
 
@@ -39,7 +40,8 @@ export default {
         'span-24': 'span 24 / span 24'
       },
       colors: {
-        ...palette
+        ...sh3Pallete,
+        ...primeVuePallete
       }
     },
   },
