@@ -6,6 +6,7 @@
       :config="button.config"
       :icon="button.icon"
       :styling="button.styling"
+      :title="button.title"
     />
   </div>
 </template>
@@ -15,6 +16,7 @@ import EraRoundedIconButton from "../Buttons/EraRoundedIconButton.vue";
 type button = {
   config: Object;
   icon: string;
+  title: string;
   styling: {
     button: string;
     icon: string;
