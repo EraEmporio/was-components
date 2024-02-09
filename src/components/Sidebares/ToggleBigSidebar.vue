@@ -2,7 +2,7 @@
   <div
     :class="
       twMerge(
-        'toggle-big--sidebar max-w-[320px] w-[20%] flex flex-col gap-1 bg-white',
+        'toggle-big--sidebar max-w-[320px] w-[20%] flex flex-col gap-2 pt-6 pb-3 bg-white',
         styling.container
       )
     "
@@ -10,7 +10,7 @@
     <div
       :class="
         twMerge(
-          'toggle-big-sidebar--header w-full h-[10%]',
+          'toggle-big-sidebar--header w-full h-auto',
           styling.header
         )
       "
@@ -20,7 +20,7 @@
     <div
       :class="
         twMerge(
-          'toggle-big-sidebar--body w-full grow',
+          'toggle-big-sidebar--body w-full grow bg-amber-200',
           styling.body
         )
       "
@@ -30,7 +30,7 @@
     <div
       :class="
         twMerge(
-          'toggle-big-sidebar--footer w-full h-[10%]',
+          'toggle-big-sidebar--footer w-full h-[7%]',
           styling.footer
         )
       "
