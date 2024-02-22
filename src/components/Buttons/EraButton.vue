@@ -1,41 +1,35 @@
-<script setup lang="ts">
-
-defineProps<{ text: string }>()
-
-</script>
-
 <template>
-  <button class="btn-cta">{{ text }}</button>
+  <div class="card flex justify-center">
+    <Button
+      label="Search"
+      icon="pi pi-search"
+      :loading="loading"
+      :ptOptions="{ mergeProps: true }"
+      @click="load"
+      v-bind="$attrs"
+    />
+  </div>
 </template>
 
-<style scoped>
-.btn-cta {
-  background-color: #d0d0d5;
-  border-width: 3px;
-  border-color: #1b1b32;
-  border-radius: 0;
-  border-style: solid;
-  color: #1b1b32;
-  display: block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 18px;
-  line-height: 1.42857143;
-}
+<script setup>
+import { ref } from "vue";
+import Button from "primevue/button";
+import ButtonPreset from "@/presets/was/button";
+import { usePrimeVue } from "primevue/config";
 
-.btn-cta:active:hover,
-.btn-cta:focus,
-.btn-cta:hover {
-  background-color: #1b1b32;
-  border-width: 3px;
-  border-color: #000;
-  background-image: none;
-  color: #f5f6f7;
-}
-</style>
+const loading = ref(false);
+
+const primevue = usePrimeVue();
+primevue.config.pt = ButtonPreset;
+
+defineOptions({
+  inheritAttrs: false,
+});
+
+const load = () => {
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+  }, 2000);
+};
+</script>

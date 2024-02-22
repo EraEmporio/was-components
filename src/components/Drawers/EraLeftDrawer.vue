@@ -52,6 +52,7 @@ type LeftDrawerStyle = {
 const showCloseButton = ref(false);
 const setCloseButtonVisibility = (visibility: boolean) => {
   showCloseButton.value = visibility;
+  console.log(visibility)
 };
 
 const props = defineProps({

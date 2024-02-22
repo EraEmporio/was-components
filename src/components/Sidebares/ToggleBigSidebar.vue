@@ -20,7 +20,7 @@
     <div
       :class="
         twMerge(
-          'toggle-big-sidebar--body w-full grow bg-amber-200',
+          'toggle-big-sidebar--body w-full grow',
           styling.body
         )
       "
