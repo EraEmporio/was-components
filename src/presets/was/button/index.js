@@ -9,9 +9,9 @@ export default {
             // Sizes & Spacing
             'text-sm font-[Lato]',
             {
-                'px-2.5 py-1.5 min-w-[2rem]': props.size === null && props.label !== null,
+                'px-3 py-2.5 min-w-[2rem]': props.size === null && props.label !== null,
                 'px-2 py-1': props.size === 'small',
-                'px-3 py-2': props.size === 'large'
+                'px-3 py-4': props.size === 'large'
             },
             {
                 'h-8 w-8 p-0': props.label == null
@@ -64,14 +64,14 @@ export default {
 
             // Success Button
             {
-                'text-white dark:text-green-900': props.severity === 'success' && !props.text && !props.outlined && !props.plain,
-                'bg-green-500 dark:bg-green-400': props.severity === 'success' && !props.text && !props.outlined && !props.plain,
-                'ring-1 ring-green-500 dark:ring-green-400': props.severity === 'success' && !props.text && !props.outlined && !props.plain
+                'text-white dark:text-grass-800': props.severity === 'success' && !props.text && !props.outlined && !props.plain,
+                'bg-grass-500 dark:bg-grass-300': props.severity === 'success' && !props.text && !props.outlined && !props.plain,
+                'ring-1 ring-grass-500 dark:ring-grass-300': props.severity === 'success' && !props.text && !props.outlined && !props.plain
             },
             // Success Text Button
-            { 'text-green-500 dark:text-green-400': props.text && props.severity === 'success' && !props.plain },
+            { 'text-grass-500 dark:text-grass-300': props.text && props.severity === 'success' && !props.plain },
             // Success Outlined Button
-            { 'text-green-500 ring-1 ring-green-500 hover:bg-green-300/20': props.outlined && props.severity === 'success' && !props.plain },
+            { 'text-grass-500 ring-1 ring-grass-500 hover:bg-mercury-100': props.outlined && props.severity === 'success' && !props.plain },
 
             // Info Button
             {
@@ -142,10 +142,10 @@ export default {
             { 'hover:bg-gray-300/20': (props.text || props.outlined) && props.severity === 'secondary' && !props.plain },
 
             // Success
-            { 'hover:bg-green-600 dark:hover:bg-green-300 hover:ring-green-600 dark:hover:ring-green-300': props.severity === 'success' && !props.text && !props.outlined && !props.plain },
-            { 'focus:ring-green-500 dark:focus:ring-green-400': props.severity === 'success' },
+            { 'hover:bg-grass-800 dark:hover:bg-mercury-100 hover:ring-grass-800 dark:hover:ring-grass-300': props.severity === 'success' && !props.text && !props.outlined && !props.plain },
+            { 'focus:ring-grass-500 dark:focus:ring-grass-300': props.severity === 'success' },
             // Text & Outlined Button
-            { 'hover:bg-green-300/20': (props.text || props.outlined) && props.severity === 'success' && !props.plain },
+            { 'hover:bg-mercury-100': (props.text || props.outlined) && props.severity === 'success' && !props.plain },
 
             // Info
             { 'hover:bg-blue-600 dark:hover:bg-blue-300 hover:ring-blue-600 dark:hover:ring-blue-300': props.severity === 'info' && !props.text && !props.outlined && !props.plain },
@@ -184,7 +184,7 @@ export default {
     label: ({ props }) => ({
         class: [
             'duration-200',
-            'font-semibold',
+            'font-normal',
             {
                 'hover:underline': props.link
             },
