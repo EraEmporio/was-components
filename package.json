@@ -30,6 +30,7 @@
     "@heroicons/vue": "^2.0.18",
     "flowbite": "^2.2.1",
     "photoswipe": "^5.4.2",
+    "primeicons": "^6.0.1",
     "primevue": "^3.47.2",
     "radix-vue": "^0.1.32",
     "tailwind-merge": "^1.14.0",

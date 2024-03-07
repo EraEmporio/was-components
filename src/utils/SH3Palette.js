@@ -53,6 +53,12 @@ export default {
       950: '#343537'
     },
 
+    grass: {
+      300: '#8CBF7F',
+      500: '#55A042',
+      800: '#246614'
+    },
+
     /* Cores que identificam os módulos: */
     contabil: {
       50: '#f0f8fb',
