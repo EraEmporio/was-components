@@ -2,7 +2,7 @@
   <era-accordion :items="items" v-slot="{ item }">
     <div class="links-wrapper w-full flex flex-col py-1 gap-1">
       <button 
-        class="links w-full py-2 px-4 inline-flex justify-start gap-3 items-center hover:bg-mercury-100 active:bg-copper-100/60" 
+        class="links w-full py-2 px-4 inline-flex justify-start gap-3 items-center rounded-sm hover:bg-mercury-100 active:bg-copper-100/60" 
         v-for="(link, i) in item.links" 
         v-bind:key="i">
         <era-card-tag :tagVariation="link.tag" />

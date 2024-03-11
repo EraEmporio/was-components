@@ -7,7 +7,7 @@
       optionLabel="name"
       :ptOptions="{ mergeProps: true }"
       :options="options"
-      class="w-full md:w-[24rem]"
+      class="w-[calc(100vw-70px)] md:!w-[450px]"
       v-bind="$attrs"
     >
       <template #dropdownicon>
