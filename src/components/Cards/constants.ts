@@ -31,14 +31,14 @@ type cardVariation = {
 }
 
 const notice = <cardVariation>{
-    cardStyle: 'bg-selenium-200/70 hover:bg-selenium-100',
-    circleStyle: 'bg-selenium-500',
+    cardStyle: 'bg-mercury-100/80 hover:bg-mercury-100',
+    circleStyle: 'bg-selenium-400',
     iconVariation: 'entypo:megaphone',
     iconColor: 'white'
 }
 const alert = <cardVariation>{
-    cardStyle: 'bg-amber-200/70 hover:bg-amber-100',
-    circleStyle: 'bg-amber-500',
+    cardStyle: 'bg-protoc-50/80 hover:bg-protoc-100/80',
+    circleStyle: 'bg-protoc-300/80',
     iconVariation: 'ph:warning-fill',
     iconColor: 'white'
 }

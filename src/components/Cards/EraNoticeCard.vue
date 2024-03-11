@@ -2,7 +2,7 @@
   <button
     :class="
       twMerge(
-        'notice flex flex-row p-3 rounded-sm min-h-[70px] items-center gap-4 bg-pink-200 hover:bg-pink-300/40',
+        'notice flex flex-row p-3 rounded-md min-h-[70px] items-center gap-4 bg-pink-50 hover:bg-pink-200/40',
         cardStyle
       )
     "
@@ -10,7 +10,7 @@
     <div
       :class="
         twMerge(
-          'notice-icon rounded-full flex items-center justify-center bg-pink-400 p-3',
+          'notice-icon rounded-full flex items-center justify-center bg-pink-200 p-3',
           circleStyle
         )
       "

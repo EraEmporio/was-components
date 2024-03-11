@@ -2,7 +2,7 @@ export { EraAccordion, EraPathAccordion } from "./Accordions"
 export { EraTopAlert } from "./Alerts"
 export { EraAvatarFallbackInitials } from "./Avatar"
 export { EraFilterBadge } from './Badges'
-export { EraButton, EraFilterButton, EraRoundedButton, EraRoundedIconButton, EraSubmitButton, EraButtonIcon } from "./Buttons";
+export { EraButton, EraFilterButton, EraIconButton, EraRoundedButton, EraRoundedIconButton, EraSubmitButton, EraButtonIcon } from "./Buttons";
 export { EraPictureCard, EraCardTag, EraNoticeCard, EraNoticeCardWrapper, EraNotificationCard, EraSimpleCard, LobbySection } from "./Cards";
 export { EraCarousel } from "./Carousel"
 export { EraCheckbox } from "./Checkbox";
@@ -21,6 +21,7 @@ export { StickyNavbar, UserNavbar } from "./Navigation";
 export { EraSimpleGallery } from "./PhotoGallery";
 export { RatingStars, GiveRatingStars } from "./Ratings";
 export { EraSelect } from "./Select";
+export { ToggleBigSidebar, ToggleSidebar, ToggleSmallSidebar } from "./Sidebares"
 export { EraTabs } from "./Tabs";
 export { TextMiddleLine } from "./Texts"
 export { FirstTitle, SecondTitle, HighlightTitle, SectionTitle } from "./Titles"

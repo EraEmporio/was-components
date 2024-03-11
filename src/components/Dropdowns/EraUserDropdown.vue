@@ -8,7 +8,7 @@
     aria-expanded="false"
     :class="
       twMerge(
-        'user-dropdown--button flex items-center py-1.5 px-2.5 gap-3 md:me-0 rounded-lg hover:bg-black/10 focus:bg-black/5 text-sm font-medium',
+        'user-dropdown--button flex items-center py-1.5 px-2.5 gap-3 md:me-0 rounded-lg hover:bg-black/10 focus:bg-black/5 text-sm',
         styling.button
       )
     "

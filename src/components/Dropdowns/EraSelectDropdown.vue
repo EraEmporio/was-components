@@ -7,7 +7,7 @@
       optionLabel="name"
       :ptOptions="{ mergeProps: true }"
       :options="options"
-      class="w-full md:w-[24rem]"
+      class="w-[calc(100vw-70px)] md:!w-[450px]"
       v-bind="$attrs"
     >
       <template #dropdownicon>
@@ -27,7 +27,7 @@
               <Icon icon="ph:cat-light" class="w-5 h-auto text-mercury-800"
               /></slot>
             </div>
-            <span v-if="showValue" :title="value.name" class="placeholder--value grow text-center truncate">{{ value.name }}</span>
+            <span v-if="showValue" :title="value != undefined ? value.name : value" class="placeholder--value grow text-center truncate">{{ value != undefined ? value.name : value }}</span>
           <span v-else class="placeholder--label grow text-center">{{ placeholder }}</span>
         </div>
       </template>
