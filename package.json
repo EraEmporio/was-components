@@ -5,7 +5,7 @@
     "email": "dev@era.art.br"
   },
   "private": false,
-  "version": "0.0.66",
+  "version": "0.0.68",
   "type": "module",
   "files": [
     "dist"
