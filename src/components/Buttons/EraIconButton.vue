@@ -22,16 +22,12 @@
 <script setup>
 import { ref } from "vue";
 import { twMerge } from "tailwind-merge";
-import { usePrimeVue } from "primevue/config";
 import { Icon } from "@iconify/vue";
 
 import Button from "primevue/button";
 import ButtonPreset from "@/presets/was/button";
 
 const loading = ref(false);
-
-const primevue = usePrimeVue();
-primevue.config.pt = ButtonPreset;
 
 /* type iconType = {
     name: string
