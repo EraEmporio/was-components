@@ -3,6 +3,7 @@
     v-model:expandedKeys="expandedKeys"
     :model="items"
     class="w-full md:w-[20rem]"
+    v-bind="$attrs"
   >
     <template #headericon="{ item }">
       <slot name="topLevelMenuIcon" :item="item">
@@ -13,7 +14,15 @@
       </slot>
     </template>
 
-    <template #itemicon="{ item }"> {{ item.icon }} my icon </template>
+    <template #itemicon="{ item }">
+      <slot name="lowLevelItemIcon" :item="item">
+        <Icon
+          :icon="item.icon"
+          :class="twMerge('w-5 h-auto text-white', item.style)"
+        />
+      </slot>
+    </template>
+
   </PanelMenu>
 </template>
 
