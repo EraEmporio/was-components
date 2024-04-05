@@ -5,35 +5,27 @@
     class="w-full md:w-[20rem]"
     v-bind="$attrs"
   >
-    <template #headericon="{ item }">
-      <slot name="topLevelMenuIcon" :item="item">
-        <Icon
-          :icon="item.icon"
-          :class="twMerge('w-5 h-auto text-white', item.style)"
-        />
-      </slot>
+    // demonstrate Vue 3 dynamic slot/template pass through
+    <template
+      v-for="(slot, index) of slotNames"
+      :key="index"
+      #[slot]="slotProps"
+    >
+      <slot :name="slot" v-bind="{ ...(slotProps as object) }" />
     </template>
-
-    <template #itemicon="{ item }">
-      <slot name="lowLevelItemIcon" :item="item">
-        <Icon
-          :icon="item.icon"
-          :class="twMerge('w-5 h-auto text-white', item.style)"
-        />
-      </slot>
-    </template>
-
   </PanelMenu>
 </template>
 
 <script lang="ts" setup>
-import { twMerge } from "tailwind-merge";
-
 import { MenuItem } from "primevue/menuitem";
 import PanelMenu, { PanelMenuExpandedKeys } from "primevue/panelmenu";
-import { PropType } from "vue";
+import { PropType, useSlots } from "vue";
 
 const expandedKeys = defineModel<PanelMenuExpandedKeys>({});
+
+const slots = useSlots();
+// Assert type here to prevent errors in template
+const slotNames = Object.keys(slots) as unknown;
 
 defineOptions({
   inheritAttrs: false,

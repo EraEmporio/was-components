@@ -25,3 +25,4 @@ export * from "./Sidebares"
 export * from "./Tabs";
 export * from "./Texts"
 export * from "./Titles"
+export * from "./Tables"
