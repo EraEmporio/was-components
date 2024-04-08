@@ -1,3 +1,4 @@
+import EraRouterLinkTabs from './EraRouterLinkTabs.vue'
 import EraTabs from './EraTabs.vue'
 
-export { EraTabs }
+export { EraRouterLinkTabs, EraTabs }
