@@ -32,15 +32,14 @@
       <template #footer><slot name="footer-content"></slot></template>
     </component>
   </Transition>
-  <button @click="toggleSidebar()" class="w-7 h-7 mt-16 -ml-6 flex items-center justify-center rounded-full relative bg-mercury-300 hover:bg-mercury-400 active:bg-selenium-300 shadow">
+  <button
+    @click="toggleSidebar()"
+    class="w-7 h-7 mt-16 -ml-6 flex items-center justify-center rounded-full relative bg-mercury-300 hover:bg-mercury-400 active:bg-selenium-300 shadow"
+  >
     <Icon
-          :icon="
-            isOpen
-              ? 'majesticons:chevron-left'
-              : 'majesticons:chevron-right'
-          "
-          class="w-5 h-auto text-white"
-        />
+      :icon="isOpen ? 'majesticons:chevron-left' : 'majesticons:chevron-right'"
+      class="w-5 h-auto text-white"
+    />
   </button>
 </template>
 <script setup lang="ts">
@@ -81,6 +80,8 @@ defineProps({
     },
   },
 });
+
+defineExpose({ toggleSidebar });
 </script>
 <style scoped>
 .open-enter-active,
