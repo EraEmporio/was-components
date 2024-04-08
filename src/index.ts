@@ -8,7 +8,7 @@ import { App } from 'vue'
 
 export default function install (app: App) {
   app.use(PrimeVue, {
-    unstyled: true,
+    unstyled: false,
     pt: Wind
 });
   for (const key in components) {
