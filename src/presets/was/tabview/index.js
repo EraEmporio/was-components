@@ -32,8 +32,8 @@ export default {
             'rounded-none',
 
             // Colors
-            'bg-surface-0 dark:bg-surface-800',
-            'text-primary-500 dark:text-primary-400',
+            'bg-mercury-0 dark:bg-mercury-800',
+            'text-selenium-500 dark:text-selenium-400',
             'shadow-md'
         ]
     },
@@ -52,8 +52,8 @@ export default {
             'rounded-none',
 
             // Colors
-            'bg-surface-0 dark:bg-surface-800',
-            'text-primary-500 dark:text-primary-400',
+            'bg-mercury-0 dark:bg-mercury-800',
+            'text-selenium-500 dark:text-selenium-400',
             'shadow-md'
         ]
     },
@@ -67,9 +67,9 @@ export default {
             'p-0 m-0',
 
             // Colors
-            'bg-surface-0 dark:bg-surface-800',
-            'border-b border-surface-200 dark:border-surface-700',
-            'text-surface-900 dark:text-surface-0/80'
+            'bg-mercury-0 dark:bg-mercury-800',
+            'border-b border-mercury-200 dark:border-mercury-700',
+            'text-mercury-900 dark:text-mercury-0/80'
         ]
     },
     tabpanel: {
@@ -105,22 +105,22 @@ export default {
 
                 // Colors and Conditions
                 {
-                    'border-surface-200 dark:border-surface-700': parent.state.d_activeIndex !== context.index,
-                    'bg-surface-0 dark:bg-surface-800': parent.state.d_activeIndex !== context.index,
-                    'text-surface-700 dark:text-surface-0/80': parent.state.d_activeIndex !== context.index,
+                    'border-mercury-200 dark:border-mercury-700': parent.state.d_activeIndex !== context.index,
+                    'bg-mercury-0 dark:bg-mercury-800': parent.state.d_activeIndex !== context.index,
+                    'text-mercury-700 dark:text-mercury-0/80': parent.state.d_activeIndex !== context.index,
 
-                    'bg-surface-0 dark:bg-surface-800': parent.state.d_activeIndex === context.index,
-                    'border-primary-500 dark:border-primary-400': parent.state.d_activeIndex === context.index,
-                    'text-primary-500 dark:text-primary-400': parent.state.d_activeIndex === context.index
+                    'bg-mercury-0 dark:bg-mercury-800': parent.state.d_activeIndex === context.index,
+                    'border-selenium-500 dark:border-selenium-400': parent.state.d_activeIndex === context.index,
+                    'text-selenium-500 dark:text-selenium-400': parent.state.d_activeIndex === context.index
                 },
 
                 // States
                 'focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:ring-2 focus-visible:ring-inset',
-                'focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400',
+                'focus-visible:ring-selenium-500 dark:focus-visible:ring-selenium-400',
                 {
-                    'hover:bg-surface-0 dark:hover:bg-surface-800/80': parent.state.d_activeIndex !== context.index,
-                    'hover:border-surface-400 dark:hover:border-surface-600': parent.state.d_activeIndex !== context.index,
-                    'hover:text-surface-900 dark:hover:text-surface-0': parent.state.d_activeIndex !== context.index
+                    'hover:bg-mercury-0 dark:hover:bg-mercury-800/80': parent.state.d_activeIndex !== context.index,
+                    'hover:border-mercury-400 dark:hover:border-mercury-600': parent.state.d_activeIndex !== context.index,
+                    'hover:text-mercury-900 dark:hover:text-mercury-0': parent.state.d_activeIndex !== context.index
                 },
 
                 // Transitions
@@ -149,8 +149,8 @@ export default {
                 'rounded-b-md',
 
                 // Colors
-                'bg-surface-0 dark:bg-surface-800',
-                'text-surface-700 dark:text-surface-0/80',
+                'bg-mercury-0 dark:bg-mercury-800',
+                'text-mercury-700 dark:text-mercury-0/80',
                 'border-0'
             ]
         }

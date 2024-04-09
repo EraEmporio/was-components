@@ -5,7 +5,7 @@
     class="w-full md:w-[20rem]"
     v-bind="$attrs"
   >
-    // demonstrate Vue 3 dynamic slot/template pass through
+    <!-- demonstrate Vue 3 dynamic slot/template pass through -->
     <template
       v-for="(slot, index) of slotNames"
       :key="index"

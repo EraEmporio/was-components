@@ -10,14 +10,10 @@
 
 <script setup>
 import { ref } from "vue";
-// import { usePrimeVue } from "primevue/config";
 
 import Button from "primevue/button";
-/* import ButtonPreset from "@/presets/was/button";
 
-const primevue = usePrimeVue();
-primevue.config.pt = ButtonPreset;
- */
+
 defineOptions({
   inheritAttrs: false,
 });
