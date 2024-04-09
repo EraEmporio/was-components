@@ -34,7 +34,7 @@
   </Transition>
   <button
     @click="toggleSidebar()"
-    class="w-7 h-7 mt-16 -ml-6 flex items-center justify-center rounded-full relative bg-mercury-300 hover:bg-mercury-400 active:bg-selenium-300 shadow"
+    class="w-7 shrink-0 h-7 mt-16 -ml-6 flex items-center justify-center rounded-full relative bg-mercury-300 hover:bg-mercury-400 active:bg-selenium-300 shadow"
   >
     <Icon
       :icon="isOpen ? 'majesticons:chevron-left' : 'majesticons:chevron-right'"

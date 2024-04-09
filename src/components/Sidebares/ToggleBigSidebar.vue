@@ -20,7 +20,7 @@
     <div
       :class="
         twMerge(
-          'toggle-big-sidebar--body w-full grow',
+          'toggle-big-sidebar--body w-full grow overflow-y-scroll',
           styling.body
         )
       "
