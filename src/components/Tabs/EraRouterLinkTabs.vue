@@ -1,6 +1,7 @@
 <template>
   <div class="card">
     <TabView
+      v-model:activeIndex="model" 
       :scrollable="true"
       v-bind="$attrs"
       @tab-change="
@@ -24,6 +25,8 @@
 import { PropType } from "vue";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
+
+const model = defineModel<number>()
 
 type RouterTab = {
   name: string;
