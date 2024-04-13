@@ -17,6 +17,7 @@ export function useFilterTable(filterDisplay: string | unknown, columns: Array<I
      * @returns The field value.
      */
     const getField = (col: ItemColum): string => {
+        if(!col.props) return col.field;
         return (col.props.filterField ? col.props.filterField : col.field) as string;
     };
 

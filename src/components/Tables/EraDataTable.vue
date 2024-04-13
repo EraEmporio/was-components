@@ -1,10 +1,23 @@
 <template>
   <DataTable v-model:filters="filters" :value="items">
+    <template #empty>
+      <!-- TODO: Create a pretty component to the empty response of the table -->
+      {{ empty }}
+    </template>
+    <Column
+      v-if="selectionMode"
+      :selection-mode="selectionMode as SelectionMode"
+      headerStyle="width: 3rem"
+      filterHeaderStyle="background-color: white"
+    >
+    </Column>
     <Column
       v-for="col of columns"
       :key="col.field"
       :field="col.field"
       :header="col.header"
+      filterHeaderStyle="background-color: white"
+      reorderableColumn
       v-bind="{ ...col.props }"
     >
       <template #body="slotProps" v-if="col.type == 'tag'">
@@ -24,7 +37,7 @@
       </template>
     </Column>
 
-    <Column header="Ações" v-if="actions.length > 0" :exportable="false">
+    <Column frozen header="Ações" v-if="actions.length > 0" :exportable="false">
       <template #body="slotProps">
         <div class="actions-wrapper">
           <Button
@@ -51,14 +64,17 @@ import { Icon } from "@iconify/vue";
 import { PropType, markRaw } from "vue";
 import { twMerge } from "tailwind-merge";
 import { FilterMatchMode, FilterOperator } from "primevue/api";
-import SelectFilterTag from "./Filters/SelectFilterTag.vue";
 import { useAttrs } from "vue";
 import { useFilterTable } from "./Filters/useFilterTable";
+
+import SelectFilterTag from "./Filters/SelectFilterTag.vue";
+import TextFilter from "./Filters/TextFilter.vue";
 
 const attrs = useAttrs();
 
 const filterComponents = {
   SelectFilterTag: markRaw(SelectFilterTag),
+  TextFilter: markRaw(TextFilter),
 };
 
 export type ItemColum = {
@@ -82,7 +98,13 @@ type Action = {
   disabled: (item: any) => boolean | false;
 };
 
+type SelectionMode = "single" | "multiple" | undefined;
+
 const props = defineProps({
+  empty: {
+    type: String,
+    default: "Nenhum item encontrado.",
+  },
   items: {
     type: Array as PropType<Array<any>>,
     default: () => <any[]>[],
@@ -94,6 +116,10 @@ const props = defineProps({
   actions: {
     type: Array as PropType<Array<Action>>,
     default: () => <Action[]>[],
+  },
+  selectionMode: {
+    type: String,
+    default: null,
   },
 });
 

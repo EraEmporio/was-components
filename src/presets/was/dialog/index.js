@@ -17,7 +17,7 @@ export default {
 
             // Color
             'dark:border',
-            'dark:border-surface-700',
+            'dark:border-mercury-700',
 
             // Maximized State
             {
@@ -28,7 +28,9 @@ export default {
                 '!max-h-full': state.maximized,
                 '!top-0': state.maximized,
                 '!left-0': state.maximized
-            }
+            },
+
+            'bg-white dark:bg-mercury-800'
         ]
     }),
     header: {
@@ -45,8 +47,8 @@ export default {
             'rounded-tr-lg',
 
             // Colors
-            'bg-surface-0 dark:bg-surface-800',
-            'text-surface-700 dark:text-surface-0/80'
+            'bg-mercury-0 dark:bg-mercury-800',
+            'text-mercury-700 dark:text-mercury-0/80'
         ]
     },
     title: {
@@ -72,15 +74,15 @@ export default {
             'rounded-full',
 
             // Colors
-            'text-surface-500',
+            'text-mercury-500',
             'bg-transparent',
 
             // Transitions
             'transition duration-200 ease-in-out',
 
             // States
-            'hover:text-surface-700 dark:hover:text-white/80',
-            'hover:bg-surface-100 dark:hover:bg-surface-800/80',
+            'hover:text-mercury-700 dark:hover:text-white/80',
+            'hover:bg-mercury-100 dark:hover:bg-mercury-800/80',
             'focus:outline-none focus:outline-offset-0 focus:ring-1 focus:ring-inset',
             'focus:ring-blueberry-500 dark:focus:ring-blueberry-400',
 
@@ -105,15 +107,15 @@ export default {
             'rounded-full',
 
             // Colors
-            'text-surface-500',
+            'text-mercury-500',
             'bg-transparent',
 
             // Transitions
             'transition duration-200 ease-in-out',
 
             // States
-            'hover:text-surface-700 dark:hover:text-white/80',
-            'hover:bg-surface-100 dark:hover:bg-surface-800/80',
+            'hover:text-mercury-700 dark:hover:text-white/80',
+            'hover:bg-mercury-100 dark:hover:bg-mercury-800/80',
             'focus:outline-none focus:outline-offset-0 focus:ring-1 focus:ring-inset',
             'focus:ring-blueberry-500 dark:focus:ring-blueberry-400',
 
@@ -158,8 +160,8 @@ export default {
             },
 
             // Colors
-            'bg-surface-0 dark:bg-surface-800',
-            'text-surface-600 dark:text-surface-0/70',
+            'bg-mercury-0 dark:bg-mercury-800',
+            'text-mercury-600 dark:text-mercury-0/70',
 
             // Misc
             // 'overflow-y-auto'
@@ -182,8 +184,8 @@ export default {
             'rounded-b-lg',
 
             // Colors
-            'bg-surface-50 dark:bg-surface-700',
-            'text-surface-700 dark:text-surface-0/80'
+            'bg-mercury-50 dark:bg-mercury-700',
+            'text-mercury-700 dark:text-mercury-0/80'
         ]
     },
     mask: ({ props, state }) => ({
@@ -194,7 +196,7 @@ export default {
             { 'p-5': !state.maximized },
 
             // Background and Effects
-            { 'bg-surface-500/70 dark:bg-surface-700/70': props.modal, 'backdrop-blur-sm': props.modal }
+            { 'bg-mercury-500/70 dark:bg-mercury-700/70': props.modal, 'backdrop-blur-sm': props.modal }
         ]
     }),
     transition: ({ props }) => {

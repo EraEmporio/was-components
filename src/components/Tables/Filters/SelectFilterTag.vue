@@ -2,7 +2,7 @@
   <Dropdown
     v-model="filterModel"
     @change="filterCallback()"
-    :options="[...col.filter.options]"
+    :options="[...col.filter?.options]"
     placeholder="Selecione um"
     class="p-column-filter"
     optionLabel="name"
@@ -10,10 +10,7 @@
     :showClear="true"
   >
     <template #option="slotProps">
-      <Tag
-        :value="slotProps.option.name"
-        :severity="slotProps.option.severity"
-      />
+      <Tag :value="slotProps.option.name" v-bind="slotProps.option" />
     </template>
   </Dropdown>
 </template>
@@ -23,9 +20,12 @@ import { ColumnFilterModelType } from "primevue/column";
 import Dropdown from "primevue/dropdown";
 import Tag from "primevue/tag";
 
+import { ItemColum } from "../EraDataTable.vue";
+import { PropType } from "vue";
+
 defineProps({
   col: {
-    type: Object,
+    type: Object as PropType<ItemColum>,
     default: () => {
       return {
         filter: {

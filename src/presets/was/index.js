@@ -11,7 +11,9 @@ import badgedirective from './badgedirective';
 import ripple from './ripple';
 import tooltip from './tooltip';
 import tabview from './tabview';
-
+import inputtext from './inputtext';
+import overlaypanel from './overlaypanel'
+import radiobutton from './radiobutton';
 
 export default {
     global,
@@ -28,5 +30,8 @@ export default {
     tabview,
     panelmenu,
     datatable,
-    tag
+    tag,
+    inputtext,
+    overlaypanel,
+    radiobutton
 }
