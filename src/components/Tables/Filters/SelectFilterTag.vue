@@ -10,7 +10,11 @@
     :showClear="true"
   >
     <template #option="slotProps">
-      <Tag :value="slotProps.option.name" v-bind="slotProps.option" />
+      <Tag
+        :value="slotProps.option.name"
+        v-bind="slotProps.option"
+        :ptOptions="{ mergeProps: true }"
+      />
     </template>
   </Dropdown>
 </template>

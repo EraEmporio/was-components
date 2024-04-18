@@ -35,7 +35,7 @@ export default {
             // Colors
             {
                 'text-mercury-700 dark:text-white/80': props.value !== props.modelValue && props.value !== undefined,
-                'bg-white dark:bg-mercury-900': props.value !== props.modelValue && props.value !== undefined,
+                'bg-red-500 dark:bg-mercury-900': props.value !== props.modelValue && props.value !== undefined,
                 'border-mercury-300 dark:border-mercury-700': props.value !== props.modelValue && props.value !== undefined,
                 'border-selenium-500 dark:border-selenium-400': props.value == props.modelValue && props.value !== undefined
             },

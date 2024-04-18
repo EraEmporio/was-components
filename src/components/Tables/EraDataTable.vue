@@ -9,6 +9,9 @@
       :selection-mode="selectionMode as SelectionMode"
       headerStyle="width: 3rem"
       filterHeaderStyle="background-color: white"
+      :pt="{
+        rowRadioButton: 'bg-red-500 text-red-600',
+      }"
     >
     </Column>
     <Column
@@ -58,6 +61,7 @@
 
 <script lang="ts" setup>
 import DataTable from "primevue/datatable";
+import Button from "primevue/button";
 import Column, { ColumnProps } from "primevue/column";
 import Tag, { TagProps } from "primevue/tag";
 import { Icon } from "@iconify/vue";

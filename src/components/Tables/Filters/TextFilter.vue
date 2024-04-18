@@ -34,5 +34,5 @@ defineProps({
   },
 });
 
-const filterModel = defineModel<Nullable<string>>('');
+const filterModel = defineModel<Nullable<string>>();
 </script>

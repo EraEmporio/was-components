@@ -24,11 +24,6 @@ import { Icon } from "@iconify/vue";
 import Button from "primevue/button";
 import ButtonPreset from "@/presets/was/button";
 
-/* type iconType = {
-    name: string
-    styling: string
-} */
-
 defineOptions({
   inheritAttrs: false,
 });
