@@ -2,7 +2,7 @@
   <Dropdown
     v-model="filterModel"
     @change="filterCallback()"
-    :options="[...col.filter?.options]"
+    :options="[...(col.filter ? col.filter.options : [])]"
     placeholder="Selecione um"
     class="p-column-filter"
     optionLabel="name"

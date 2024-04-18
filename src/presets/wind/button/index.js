@@ -118,7 +118,7 @@ export default {
             { 'text-red-500 ring-1 ring-red-500 hover:bg-red-300/20': props.outlined && props.severity === 'danger' && !props.plain },
 
             // --- Severity Button States ---
-            'focus:outline-none focus:outline-offset-0 focus:ring-2 focus:ring-offset-current',
+            'focus:outline-none focus:outline-offset-0 focus:ring-0 focus:ring-offset-current',
             { 'focus:ring-offset-2': !props.link && !props.plain && !props.outlined && !props.text },
 
             // Link
@@ -131,7 +131,7 @@ export default {
 
             // Primary
             { 'hover:bg-primary-600 dark:hover:bg-primary-300 hover:ring-primary-600 dark:hover:ring-primary-300': !props.link && props.severity === null && !props.text && !props.outlined && !props.plain },
-            { 'focus:ring-primary-500 dark:focus:ring-primary-400': props.severity === null },
+            { 'focus:ring-primary-0 dark:focus:ring-primary-400': props.severity === null },
             // Text & Outlined Button
             { 'hover:bg-primary-300/20': (props.text || props.outlined) && props.severity === null && !props.plain },
 
