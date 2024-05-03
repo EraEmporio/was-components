@@ -15,7 +15,7 @@ export default {
             // Colors
             'text-mercury-900 dark:text-mercury-0',
             'placeholder:text-mercury-400 dark:placeholder:text-mercury-500',
-            'bg-mercury-0 dark:bg-mercury-900',
+            'bg-white dark:bg-mercury-900',
             'shadow-sm',
             { 'ring-1 ring-inset ring-mercury-300 dark:ring-mercury-700 ring-offset-0': parent.instance.$name !== 'InputGroup' },
 

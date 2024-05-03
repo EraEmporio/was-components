@@ -1,37 +1,41 @@
-import button from './button';
-import dialog from './dialog';
-import dropdown from './dropdown';
-import tabmenu from './tabmenu';
-import panelmenu from './panelmenu';
-import global from './global';
-import datatable from './datatable';
-import tag from './tag';
+import autocomplete from './autocomplete';
 import badge from './badge';
 import badgedirective from './badgedirective';
-import ripple from './ripple';
-import tooltip from './tooltip';
-import tabview from './tabview';
+import button from './button';
+import datatable from './datatable';
+import dialog from './dialog';
+import dropdown from './dropdown';
+import global from './global';
+import iconfield from './iconfield';
 import inputtext from './inputtext';
-import overlaypanel from './overlaypanel'
+import overlaypanel from './overlaypanel';
+import panelmenu from './panelmenu';
 import radiobutton from './radiobutton';
+import ripple from './ripple';
+import tabmenu from './tabmenu';
+import tabview from './tabview';
+import tag from './tag';
+import tooltip from './tooltip';
 
 export default {
-    global,
+    autocomplete,
+    badge,
     directives: {
         badge: badgedirective,
         ripple,
         tooltip
     },
-    badge,
     button,
+    datatable,
     dialog,
     dropdown,
-    tabmenu,
-    tabview,
-    panelmenu,
-    datatable,
-    tag,
+    global,
+    iconfield,
     inputtext,
     overlaypanel,
-    radiobutton
+    panelmenu,
+    radiobutton,
+    tabmenu,
+    tabview,
+    tag
 }

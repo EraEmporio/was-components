@@ -11,7 +11,7 @@ export * from "./Drawers"
 export * from "./Dropdowns"
 export * from "./Filter"
 export * from "./Forms";
-export { EraInput, EraSearchInput } from "./Inputs";
+export { EraInput, EraSearchInput, EraAutoCompleteSearch } from "./Inputs"; //TODO: Resolve EraCheckbox ambiguity
 export * from "./Layouts"
 export * from "./Links"
 export * from "./Mobile";

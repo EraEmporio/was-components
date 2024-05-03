@@ -2,7 +2,7 @@ export default {
     root: ({ props }) => ({
         class: [
             //Font
-            'text-xs font-bold',
+            'text-xs font-bold border',
 
             //Alignments
             'inline-flex items-center justify-center',
@@ -17,13 +17,13 @@ export default {
             },
 
             //Colors
-            'text-white dark:text-mercury-900',
+            // 'text-white dark:text-mercury-900',
             {
-                'bg-selenium-500 dark:bg-selenium-400': props.severity == null || props.severity == 'selenium',
-                'bg-green-500 dark:bg-green-400': props.severity == 'success',
-                'bg-blue-500 dark:bg-blue-400': props.severity == 'info',
-                'bg-orange-500 dark:bg-orange-400': props.severity == 'warning',
-                'bg-red-500 dark:bg-red-400': props.severity == 'danger'
+                'text-selenium-500 bg-selenium-50 border-selenium-500 dark:border-selenium-400': props.severity == null || props.severity == 'selenium',
+                'text-green-500 bg-green-50 border-green-500 dark:border-green-400': props.severity == 'success',
+                'text-blue-500 bg-blue-50 border-blue-500 dark:border-blue-400': props.severity == 'info',
+                'text-orange-500 bg-orange-50 border-orange-500 dark:border-orange-400': props.severity == 'warning',
+                'text-red-500 bg-red-50 border-red-500 dark:border-red-400': props.severity == 'danger'
             }
         ]
     }),

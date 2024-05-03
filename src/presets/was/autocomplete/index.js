@@ -45,7 +45,7 @@ export default {
 
             // States
             'focus:outline-none focus:outline-offset-0',
-            { 'ring-1 ring-inset ring-mercury-300 dark:ring-mercury-700 ring-offset-0': !state.focused, 'ring-2 ring-primary-500 dark:ring-primary-400': state.focused },
+            { 'ring-1 ring-inset ring-mercury-300 dark:ring-mercury-700 ring-offset-0': !state.focused, 'ring-2 ring-selenium-500 dark:ring-selenium-400': state.focused },
 
             // Transition
             'transition duration-200 ease-in-out',
@@ -83,7 +83,7 @@ export default {
             },
 
             // States
-            { 'focus:outline-none focus:outline-offset-0 focus:ring-inset focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400': !props.multiple },
+            { 'focus:outline-none focus:outline-offset-0 focus:ring-inset focus:ring-2 focus:ring-selenium-500 dark:focus:ring-selenium-400': !props.multiple },
 
             // Transition
             'transition-colors duration-200'
@@ -149,7 +149,7 @@ export default {
                 // States
                 'hover:bg-mercury-200 dark:hover:bg-mercury-700',
                 'focus:outline-none focus:outline-offset-0 focus:ring-1',
-                'focus:ring-primary-500 dark:focus:ring-primary-400'
+                'focus:ring-selenium-500 dark:focus:ring-selenium-400'
             ]
         }
     },
@@ -199,11 +199,11 @@ export default {
             // Color
             { 'text-mercury-700 dark:text-white/80': !context.focused && !context.selected },
             { 'bg-mercury-200 dark:bg-mercury-600/60 text-mercury-700 dark:text-white/80': context.focused && !context.selected },
-            { 'bg-primary-500 dark:bg-primary-400 text-white dark:text-mercury-700': context.focused && context.selected },
+            { 'bg-selenium-500 dark:bg-selenium-400 text-white dark:text-mercury-700': context.focused && context.selected },
             { 'bg-transparent text-mercury-700 dark:text-white/80': !context.focused && context.selected },
 
             //States
-            'hover:bg-primary-500 dark:hover:bg-primary-400 hover:text-white dark:hover:text-mercury-700',
+            'hover:bg-selenium-500 dark:hover:bg-selenium-400 hover:text-white dark:hover:text-mercury-700',
 
             // Misc
             'cursor-pointer',

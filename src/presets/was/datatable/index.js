@@ -122,7 +122,7 @@ export default {
                 // Spacing
                 context?.size === 'small' ? 'py-2.5 px-2' : context?.size === 'large' ? 'py-5 px-4' : 'py-3.5 px-3',
                 // Color
-                (props.sortable === '' || props.sortable) && context.sorted ? 'text-selenium-500' : 'bg-mercury-100 text-mercury-700',
+                (props.sortable === '' || props.sortable) && context.sorted ? 'text-selenium-500 bg-mercury-100' : 'bg-mercury-100 text-mercury-700',
                 (props.sortable === '' || props.sortable) && context.sorted ? 'dark:text-selenium-400' : 'dark:text-white/80 dark:bg-mercury-800',
                 'border-mercury-200 dark:border-mercury-700 ',
 
@@ -898,8 +898,8 @@ export default {
                     // Transition
                     'transition duration-200 ease-in-out',
 
-                     // Colors
-                     {
+                    // Colors
+                    {
                         'text-mercury-700 dark:text-white/80': !props.modelValue,
                         'bg-mercury-0 dark:bg-mercury-900': !props.modelValue,
                         'border-mercury-300 dark:border-mercury-700': !props.modelValue,
