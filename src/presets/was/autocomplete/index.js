@@ -10,7 +10,7 @@ export default {
             { 'w-full': props.multiple },
 
             // Color
-            'text-mercury-900 dark:text-mercury-0',
+            'text-mercury-900 dark:text-white',
 
             //States
             {
@@ -172,7 +172,7 @@ export default {
             // Color
             'bg-white dark:bg-mercury-800',
             'text-mercury-800 dark:text-white/80',
-            'ring-1 ring-inset ring-mercury-300 dark:ring-mercury-700'
+            'dark:ring-mercury-700'
         ]
     },
     list: {
@@ -198,7 +198,7 @@ export default {
 
             // Color
             { 'text-mercury-700 dark:text-white/80': !context.focused && !context.selected },
-            { 'bg-mercury-200 dark:bg-mercury-600/60 text-mercury-700 dark:text-white/80': context.focused && !context.selected },
+            { 'bg-mercury-0 dark:bg-mercury-600/60 text-mercury-700 dark:text-white/80': context.focused && !context.selected },
             { 'bg-selenium-500 dark:bg-selenium-400 text-white dark:text-mercury-700': context.focused && context.selected },
             { 'bg-transparent text-mercury-700 dark:text-white/80': !context.focused && context.selected },
 

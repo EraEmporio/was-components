@@ -2,6 +2,7 @@ import autocomplete from './autocomplete';
 import badge from './badge';
 import badgedirective from './badgedirective';
 import button from './button';
+import breadcrumb from './breadcrumb';
 import datatable from './datatable';
 import dialog from './dialog';
 import dropdown from './dropdown';
@@ -26,6 +27,7 @@ export default {
         tooltip
     },
     button,
+    breadcrumb,
     datatable,
     dialog,
     dropdown,
