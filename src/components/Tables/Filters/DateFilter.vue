@@ -32,7 +32,7 @@
 
 <script setup lang="ts">
 import { ref, watch, computed, PropType } from "vue";
-import Calendar from "primevue/calendar";
+import Calendar, { CalendarProps } from "primevue/calendar";
 import OverlayPanel from "primevue/overlaypanel";
 import IconField from "primevue/iconfield";
 import InputIcon from "primevue/inputicon";
@@ -66,7 +66,7 @@ const inputDate = ref();
 
 const minDate = ref();
 const maxDate = ref();
-const maxMinProps = {
+const maxMinProps = <CalendarProps>{
   showIcon: true,
   iconDisplay: "input",
   dateFormat: "dd/mm/yy",
