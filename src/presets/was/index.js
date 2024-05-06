@@ -3,8 +3,10 @@ import badge from './badge';
 import badgedirective from './badgedirective';
 import button from './button';
 import breadcrumb from './breadcrumb';
+import calendar from './calendar';
 import datatable from './datatable';
 import dialog from './dialog';
+import divider from './divider';
 import dropdown from './dropdown';
 import global from './global';
 import iconfield from './iconfield';
@@ -28,8 +30,10 @@ export default {
     },
     button,
     breadcrumb,
+    calendar,
     datatable,
     dialog,
+    divider,
     dropdown,
     global,
     iconfield,

@@ -6,7 +6,7 @@
     </template>
     <Column
       v-if="selectionMode"
-      :selection-mode="selectionMode as SelectionMode"
+      :selection-mode="selectionMode"
       headerStyle="width: 3rem"
       filterHeaderStyle="background-color: white"
       :pt="{
@@ -73,12 +73,14 @@ import { useFilterTable } from "./Filters/useFilterTable";
 
 import SelectFilterTag from "./Filters/SelectFilterTag.vue";
 import TextFilter from "./Filters/TextFilter.vue";
+import DateFilter from "./Filters/DateFilter.vue";
 
 const attrs = useAttrs();
 
 const filterComponents = {
   SelectFilterTag: markRaw(SelectFilterTag),
   TextFilter: markRaw(TextFilter),
+  DateFilter: markRaw(DateFilter),
 };
 
 export type ItemColum = {
@@ -122,7 +124,7 @@ const props = defineProps({
     default: () => <Action[]>[],
   },
   selectionMode: {
-    type: String,
+    type: String as PropType<SelectionMode>,
     default: null,
   },
 });
