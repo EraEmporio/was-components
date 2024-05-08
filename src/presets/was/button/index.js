@@ -23,7 +23,7 @@ export default {
             { 'rounded-none first:rounded-l-md last:rounded-r-md self-center': parent.instance.$name == 'InputGroup' },
 
             // Link Button
-            { 'text-green-600 bg-transparent ring-transparent': props.link },
+            { 'text-selenium-600 bg-transparent ring-transparent': props.link },
 
             // Plain Button
             { 'text-white bg-gray-500 ring-1 ring-gray-500': props.plain && !props.outlined && !props.text },
@@ -43,13 +43,13 @@ export default {
             // Primary Button
             {
                 'text-white dark:text-gray-900': !props.link && props.severity === null && !props.text && !props.outlined && !props.plain,
-                'bg-green-500 dark:bg-green-400': !props.link && props.severity === null && !props.text && !props.outlined && !props.plain,
-                'ring-1 ring-green-500 dark:ring-green-400': !props.link && props.severity === null && !props.text && !props.outlined && !props.plain
+                'bg-selenium-500 dark:bg-selenium-400': !props.link && props.severity === null && !props.text && !props.outlined && !props.plain,
+                'ring-1 ring-selenium-500 dark:ring-selenium-400': !props.link && props.severity === null && !props.text && !props.outlined && !props.plain
             },
             // Primary Text Button
-            { 'text-green-500 dark:text-green-400': props.text && props.severity === null && !props.plain },
+            { 'text-selenium-500 dark:text-selenium-400': props.text && props.severity === null && !props.plain },
             // Primary Outlined Button
-            { 'text-green-500 ring-1 ring-green-500 hover:bg-green-300/20': props.outlined && props.severity === null && !props.plain },
+            { 'text-selenium-500 ring-1 ring-selenium-500 hover:bg-selenium-300/20': props.outlined && props.severity === null && !props.plain },
 
             // Secondary Button
             {
@@ -122,7 +122,7 @@ export default {
             { 'focus:ring-offset-2': !props.link && !props.plain && !props.outlined && !props.text },
 
             // Link
-            { 'focus:ring-green-500 dark:focus:ring-green-400': props.link },
+            { 'focus:ring-selenium-500 dark:focus:ring-selenium-400': props.link },
 
             // Plain
             { 'hover:bg-gray-600 hover:ring-gray-600': props.plain && !props.outlined && !props.text },
@@ -130,10 +130,10 @@ export default {
             { 'hover:bg-gray-300/20': props.plain && (props.text || props.outlined) },
 
             // Primary
-            { 'hover:bg-green-600 dark:hover:bg-green-300 hover:ring-green-600 dark:hover:ring-green-300': !props.link && props.severity === null && !props.text && !props.outlined && !props.plain },
-            { 'focus:ring-green-500 dark:focus:ring-green-400': props.severity === null },
+            { 'hover:bg-selenium-600 dark:hover:bg-selenium-300 hover:ring-selenium-600 dark:hover:ring-selenium-300': !props.link && props.severity === null && !props.text && !props.outlined && !props.plain },
+            { 'focus:ring-selenium-500 dark:focus:ring-selenium-400': props.severity === null },
             // Text & Outlined Button
-            { 'hover:bg-green-300/20': (props.text || props.outlined) && props.severity === null && !props.plain },
+            { 'hover:bg-selenium-300/20': (props.text || props.outlined) && props.severity === null && !props.plain },
 
             // Secondary
             { 'hover:bg-gray-600 dark:hover:bg-gray-300 hover:ring-gray-600 dark:hover:ring-gray-300': props.severity === 'secondary' && !props.text && !props.outlined && !props.plain },

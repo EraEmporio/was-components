@@ -1,3 +1,4 @@
 import EraRoundedMenu from "./EraRoundedMenu.vue";
+import EraDropdownMenu from './EraPanelMenu.vue';
 
-export { EraRoundedMenu }
+export { EraRoundedMenu, EraDropdownMenu }

@@ -3,6 +3,7 @@ export default {
         class: [
             // Position
             'relative',
+            '-mb-3',
 
             // Misc
             { 'overflow-hidden': props.scrollable }
@@ -29,11 +30,11 @@ export default {
 
             // Size and Shape
             'h-full w-12',
-            'rounded-none',
+            'rounded-full',
 
             // Colors
-            'bg-surface-0 dark:bg-surface-800',
-            'text-primary-500 dark:text-primary-400',
+            'bg-mercury-0 dark:bg-mercury-800',
+            'text-selenium-500 hover:text-selenium-700 dark:text-selenium-400',
             'shadow-md'
         ]
     },
@@ -49,11 +50,11 @@ export default {
 
             // Size and Shape
             'h-full w-12',
-            'rounded-none',
+            'rounded-full',
 
             // Colors
-            'bg-surface-0 dark:bg-surface-800',
-            'text-primary-500 dark:text-primary-400',
+            'bg-mercury-0 dark:bg-mercury-800',
+            'text-selenium-500 hover:text-selenium-700 dark:text-selenium-400',
             'shadow-md'
         ]
     },
@@ -63,18 +64,20 @@ export default {
             'flex flex-1',
 
             // Spacing
+            'space-x-1',
             'list-none',
             'p-0 m-0',
 
             // Colors
-            'bg-surface-0 dark:bg-surface-800',
-            'border-b border-surface-200 dark:border-surface-700',
-            'text-surface-900 dark:text-surface-0/80'
+            'bg-mercury-0 dark:bg-mercury-800',
+            'text-mercury-900 dark:text-mercury-0/80'
         ]
     },
     tabpanel: {
         header: ({ props }) => ({
             class: [
+                
+
                 // Spacing
                 'mr-0',
 
@@ -88,39 +91,39 @@ export default {
             class: [
                 'relative',
 
+                //Size and shape
+                'min-w-[200px]',
+                'rounded-t-xl',
+
                 // Font
                 'font-medium',
                 'text-md',
 
                 // Flexbox and Alignment
-                'flex items-center',
+                'flex items-center justify-center',
 
                 // Spacing
-                'py-4 px-3',
-                '-mb-[1px]',
-
-                // Shape
-                'border-b-2',
-                'rounded-t-md',
+                'pt-3 pb-4 px-4',
+                
 
                 // Colors and Conditions
                 {
-                    'border-surface-200 dark:border-surface-700': parent.state.d_activeIndex !== context.index,
-                    'bg-surface-0 dark:bg-surface-800': parent.state.d_activeIndex !== context.index,
-                    'text-surface-700 dark:text-surface-0/80': parent.state.d_activeIndex !== context.index,
+                    'border-mercury-0 dark:border-mercury-700': parent.state.d_activeIndex !== context.index,
+                    'bg-mercury-100 dark:bg-mercury-800': parent.state.d_activeIndex !== context.index,
+                    'text-mercury-800 dark:text-mercury-0/80': parent.state.d_activeIndex !== context.index,
 
-                    'bg-surface-0 dark:bg-surface-800': parent.state.d_activeIndex === context.index,
-                    'border-primary-500 dark:border-primary-400': parent.state.d_activeIndex === context.index,
-                    'text-primary-500 dark:text-primary-400': parent.state.d_activeIndex === context.index
+                    'bg-white dark:bg-mercury-800': parent.state.d_activeIndex === context.index,
+                    'border-selenium-0 dark:border-selenium-400': parent.state.d_activeIndex === context.index,
+                    'text-mercury-950 dark:text-selenium-400': parent.state.d_activeIndex === context.index
                 },
 
                 // States
-                'focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:ring-2 focus-visible:ring-inset',
-                'focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400',
+                /* 'focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:ring-2 focus-visible:ring-inset',
+                'focus-visible:ring-selenium-500 dark:focus-visible:ring-selenium-400', */
                 {
-                    'hover:bg-surface-0 dark:hover:bg-surface-800/80': parent.state.d_activeIndex !== context.index,
-                    'hover:border-surface-400 dark:hover:border-surface-600': parent.state.d_activeIndex !== context.index,
-                    'hover:text-surface-900 dark:hover:text-surface-0': parent.state.d_activeIndex !== context.index
+                    'hover:bg-mercury-200 dark:hover:bg-mercury-800/80': parent.state.d_activeIndex !== context.index,
+                    'hover:border-mercury-0 dark:hover:border-mercury-600': parent.state.d_activeIndex !== context.index,
+                    'hover:text-mercury-900 dark:hover:text-mercury-0': parent.state.d_activeIndex !== context.index
                 },
 
                 // Transitions
@@ -143,14 +146,14 @@ export default {
         content: {
             class: [
                 // Spacing
-                'p-6',
+                'pb-0',
 
                 // Shape
                 'rounded-b-md',
 
                 // Colors
-                'bg-surface-0 dark:bg-surface-800',
-                'text-surface-700 dark:text-surface-0/80',
+                'bg-mercury-0 dark:bg-mercury-800',
+                'text-mercury-700 dark:text-mercury-0/80',
                 'border-0'
             ]
         }
