@@ -172,7 +172,7 @@ export default {
             { 'hover:bg-red-300/20': (props.text || props.outlined) && props.severity === 'danger' && !props.plain },
 
             // Disabled
-            { 'bg-mercury-100 text-mercury-600 ring-mercury-200 pointer-events-none cursor-default': context.disabled },
+            { '!bg-mercury-100 !text-mercury-600 !ring-mercury-200 pointer-events-none cursor-default': context.disabled },
 
             // Transitions
             'transition duration-200 ease-in-out',

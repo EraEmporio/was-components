@@ -4,6 +4,7 @@
       <!-- TODO: Create a pretty component to the empty response of the table -->
       {{ empty }}
     </template>
+    <template #loading> loading... </template>
     <Column
       v-if="selectionMode"
       :selection-mode="selectionMode"
